@@ -13,6 +13,9 @@
   </head>
   <body>
     <div id="layout" class="pure-g-r">
+      <a class="pure-menu-link" id="menuLink" href="#menu">
+        <img width="20" alt="Menu toggle" src="{% static "navicon-png2x.png" %}">
+      </a>
       <div id="menu" class="pure-u">
         <div class="pure-menu pure-menu-open">
           <a href="{% url "project.home" %}" class="pure-menu-heading">Home</a>
@@ -42,5 +45,6 @@
         </div>
       </div>
     </div>
+    <script src="{% static "ui.js" %}"></script>
   </body>
 </html>
