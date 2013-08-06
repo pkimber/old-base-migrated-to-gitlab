@@ -12,20 +12,35 @@
     {% endblock stylesheets %}
   </head>
   <body>
-    <div class="content">
-      <div class="pure-menu pure-menu-open pure-menu-horizontal">
-        <ul>
-          <li><a href="{% url "project.home" %}">Home</a></li>
-          {% if user.is_authenticated %}
-            <li><a href="{% url 'logout' %}">Logout</a></li>
-          {% else %}
-            <li><a href="{% url 'login' %}">Login</a></li>
-          {% endif %}
-        </ul>
+    <div id="layout" class="pure-g-r">
+      <div id="menu" class="pure-u">
+        <div class="pure-menu pure-menu-open">
+          <a href="{% url "project.home" %}" class="pure-menu-heading">Home</a>
+          <ul>
+            <li><a href="{% url "project.home" %}">Home</a></li>
+            {% if user.is_authenticated %}
+              <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+              <li><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+          </ul>
+        </div>
       </div>
-      {% block content %}
-        <h1>Two Scoops</h1>
-      {% endblock content %}
+
+      <div class="pure-u-1">
+        <div class="header">
+          {% block header %}
+            <h1>Base</h1>
+            <h2>This is the base template (please add a 'header' block)</h2>
+          {% endblock header %}
+        </div>
+
+        <div class="l-box">
+          {% block content %}
+            <h1>Two Scoops</h1>
+          {% endblock content %}
+        </div>
+      </div>
     </div>
   </body>
 </html>
