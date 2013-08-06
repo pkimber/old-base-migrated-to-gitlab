@@ -1,6 +1,3 @@
-from base.models import Comment
-
-
 def clean_and_save(model_instance):
     """
     Validate and save a model instance.
@@ -14,4 +11,3 @@ def clean_and_save(model_instance):
     model_instance.save()
     model_instance.full_clean()
     return model_instance
-
