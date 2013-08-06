@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Base
+{% endblock title %}
+
+{% block page_content %}
+  <h1>{{ page_header }}<small> {{ page_header_sub }}</h1>
+  <a href="{% url 'base.comment' %}">Comments</a>
+{% endblock page_content %}
