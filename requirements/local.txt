@@ -1,10 +1,7 @@
+-r base.txt
 beautifulsoup4
-django-braces==0.2.3
-django-crispy-forms==1.3.2
-django-reversion==1.7
-Django==1.5.1
 fabric
-hgapi
+gitpython==0.3.1-beta2
 ipdb
 psycopg2
 pytest-django

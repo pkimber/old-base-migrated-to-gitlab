@@ -15,7 +15,7 @@ to make sure a file has been created for you).
 ::
 
   mkvirtualenv dev_base
-  pip install -r requirements-dev.txt
+  pip install -r requirements/local.txt
 
   echo "export DJANGO_SETTINGS_MODULE=example.dev_patrick" >> $VIRTUAL_ENV/bin/postactivate
   echo "unset DJANGO_SETTINGS_MODULE" >> $VIRTUAL_ENV/bin/postdeactivate
@@ -74,7 +74,7 @@ To release the application:
 
 ::
 
-  fab -f ../../module/fabric/release.py dist
+  fab -f fabric/release.py dist
   hg push
 
 To check the contents of the distribution:
