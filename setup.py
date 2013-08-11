@@ -19,7 +19,7 @@ def get_readme():
 
 
 setup(
-    name='csw-base',
+    name='pkimber-base',
     packages=['base', 'base.tests'],
     package_data={
         'base': [
@@ -27,7 +27,7 @@ setup(
             'templates/*.*',
         ],
     },
-    version='0.0.06',
+    version='0.0.07',
     description='Base',
     author='Patrick Kimber',
     author_email='code@pkimber.net',
