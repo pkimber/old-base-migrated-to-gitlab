@@ -3,6 +3,7 @@ recursive-include base/templates *
 
 include LICENSE
 include README
+include requirements/*.txt
 include *.txt
 
 prune example/
