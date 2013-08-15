@@ -47,6 +47,7 @@ We use ``pytest-django``:
 ::
 
   workon dev_base
+  find . -name '*.pyc' -delete
   py.test
 
 To stop on first failure:
@@ -74,11 +75,11 @@ To release the application:
 
 ::
 
-  fab -f fabric/release.py dist
+  fab -f fabric/release.py dist_pypi:prefix=pkimber,url=http://pkimber.net/root/dev/
   hg push
 
 To check the contents of the distribution:
 
 ::
 
-  tar -ztvf dist/dev-base-0.2.1.tar.gz
+  tar -ztvf dist/pkimber-base-0.0.08.tar.gz
