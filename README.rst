@@ -75,8 +75,8 @@ To release the application:
 
 ::
 
-  fab -f fabric/release.py dist_pypi:prefix=pkimber,url=http://pkimber.net/root/dev/
-  hg push
+  fab -f fabric/release.py dist:prefix=pkimber,pypirc=dev
+  git push -u origin master
 
 To check the contents of the distribution:
 
