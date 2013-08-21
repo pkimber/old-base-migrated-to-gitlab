@@ -3,11 +3,17 @@
 <html>
   <head>
     <title>
-      {% block title %}Two Scoops of Django{% endblock title %}
+      {% block title %}
+        This is the base template (please add a 'title' block)
+      {% endblock title %}
+      {% block sub_title %}
+        This is the base template (please add a 'sub_title' block)
+      {% endblock sub_title %}
     </title>
     {% block stylesheets %}
       <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.1/pure-min.css">
       <link rel="stylesheet" href="{% static "base.css" %}">
+      <link rel="stylesheet" href="{% static "main.css" %}">
       <script src="http://use.typekit.net/ajf8ggy.js"></script>
       <script>
         try { Typekit.load(); } catch (e) {}
@@ -33,19 +39,24 @@
         </div>
       </div>
 
-      <div class="pure-u-1">
-        <div class="header">
-          {% block header %}
-            <h1>Base</h1>
-            <h2>This is the base template (please add a 'header' block)</h2>
-          {% endblock header %}
-        </div>
-
-        <div class="l-box">
-          {% block content %}
-            <h1>Two Scoops</h1>
-          {% endblock content %}
-        </div>
+      <div id="main" class="pure-u-1">
+        {% block header %}
+          <div class="hero">
+            <h1 class="pure-u-1">
+              {% block heading %}
+                Base
+              {% endblock heading %}
+            </h1>
+            <h2 class="pure-u-3-4 l-centered">
+              {% block sub_heading %}
+                This is the base template (please add a 'header' block)
+              {% endblock sub_heading %}
+            </h2>
+          </div>
+        {% endblock header %}
+        {% block content %}
+          <h1>Two Scoops</h1>
+        {% endblock content %}
       </div>
     </div>
     <script src="{% static "ui.js" %}"></script>
