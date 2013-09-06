@@ -54,12 +54,26 @@
             </h2>
           </div>
         {% endblock header %}
-        {% block content %}
-          <p>This is the base template (please add a 'content' block)</p>
-        {% endblock content %}
-        {% block footer %}
-          <p>This is the base template (please add a 'footer' block)</p>
-        {% endblock footer %}
+
+        <div class="content">
+          {% if messages %}
+            <div class="pure-g-r">
+              <div class="pure-u-1">
+                <aside>
+                  {% for message in messages %}
+                    <p>{{ message }}</p>
+                  {% endfor %}
+                </aside>
+              </div>
+            </div>
+          {% endif %}
+          {% block content %}
+            <p>This is the base template (please add a 'content' block)</p>
+          {% endblock content %}
+          {% block footer %}
+            <p>This is the base template (please add a 'footer' block)</p>
+          {% endblock footer %}
+        </div>
       </div>
     </div>
     <script src="{% static "ui.js" %}"></script>
