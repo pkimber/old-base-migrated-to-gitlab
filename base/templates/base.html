@@ -29,12 +29,12 @@
           <a href="{% url "project.home" %}" class="pure-menu-heading">Home</a>
           <ul>
             {% block menu %}
+            {% endblock menu %}
             {% if user.is_authenticated %}
               <li><a href="{% url 'logout' %}">Logout</a></li>
             {% else %}
               <li><a href="{% url 'login' %}">Login</a></li>
             {% endif %}
-            {% endblock menu %}
           </ul>
         </div>
       </div>
