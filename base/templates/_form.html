@@ -1,7 +1,8 @@
-<form action="" method="post" class="pure-form pure-form-stacked">
+<form action="." method="post" class="pure-form pure-form-stacked">
   {% csrf_token %}
   {{ form.non_field_errors }}
   <fieldset>
+    <legend>{{ legend }}</legend>
     {% for field in form %}
       <div class="pure-control-group">
         {{ field.label_tag }}
@@ -13,11 +14,12 @@
     {% endfor %}
     <div class="pure-controls">
       <p>
-        <input type="submit" value="Submit" class="pure-button pure-button-primary" />
+      <input type="submit" value="{% if submit %}{{ submit }}{% else %}Submit{% endif %}" class="pure-button pure-button-primary" />
       </p>
     </div>
   </fieldset>
   {% for hidden in form.hidden_fields %}
     {{ hidden }}
   {% endfor %}
+  <input type="hidden" name="next" value="{{ next }}" />
 </form>
