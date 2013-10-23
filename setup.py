@@ -27,7 +27,7 @@ setup(
             'templates/*.*',
         ],
     },
-    version='0.0.21',
+    version='0.0.22',
     description='Base',
     author='Patrick Kimber',
     author_email='code@pkimber.net',
