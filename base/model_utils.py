@@ -8,10 +8,15 @@ from django.db import models
 # http://nemesisdesign.net/blog/coding/django-private-file-upload-and-serving/
 # and
 # https://github.com/johnsensible/django-sendfile
-private_file_store = FileSystemStorage(location=settings.SENDFILE_ROOT)
+private_file_store = FileSystemStorage(
+    location=settings.SENDFILE_ROOT
+)
 
 
-ftp_file_store = FileSystemStorage(location=settings.FTP_STATIC_DIR)
+ftp_file_store = FileSystemStorage(
+    location=settings.FTP_STATIC_DIR,
+    base_url=settings.FTP_STATIC_URL,
+)
 
 
 class TimeStampedModel(models.Model):
