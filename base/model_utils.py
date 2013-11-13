@@ -11,6 +11,9 @@ from django.db import models
 private_file_store = FileSystemStorage(location=settings.SENDFILE_ROOT)
 
 
+ftp_file_store = FileSystemStorage(location=settings.FTP_STATIC_DIR)
+
+
 class TimeStampedModel(models.Model):
     """
     An abstract base class model that provides self-updating
