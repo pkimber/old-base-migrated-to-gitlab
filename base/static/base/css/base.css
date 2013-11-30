@@ -1,0 +1,16 @@
+/*
+When setting the primary font stack, apply it to the Pure grid units along with
+the `body`. Pure Grids use specific font stacks to ensure the greatest
+OS/browser compatibility.
+*/
+body,
+.pure-g [class *= "pure-u"],
+.pure-g-r [class *= "pure-u"] {
+    /* Set your content font stack here: */
+    font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+    color: #777;
+}
+
