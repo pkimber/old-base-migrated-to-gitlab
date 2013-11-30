@@ -41,27 +41,26 @@
         </div>
       </div>
 
-      <div class="pure-g-r">
+      <div class="content">
         {% block header %}
-          <div class="pure-u-1 hero">
-            <h1>
-              {% block heading %}
-                This is the base template (please add a 'heading' block)
-              {% endblock heading %}
-            </h1>
-            <h2>
-              {% block sub_heading %}
-                This is the base template (please add a 'sub_heading' block)
-              {% endblock sub_heading %}
-            </h2>
+          <div class="pure-g-r">
+            <div class="pure-u-1 hero">
+              <h1>
+                {% block heading %}
+                  This is the base template (please add a 'heading' block)
+                {% endblock heading %}
+              </h1>
+              <h2>
+                {% block sub_heading %}
+                  This is the base template (please add a 'sub_heading' block)
+                {% endblock sub_heading %}
+              </h2>
+            </div>
           </div>
         {% endblock header %}
 
-
-
-
-        <div id="main" class="pure-u-1">
-          <div class="content">
+        <div class="pure-g-r">
+          <div id="main" class="pure-u-1">
             {% if messages %}
               <div class="pure-g-r">
                 <div class="pure-u-1">
@@ -80,16 +79,11 @@
           </div>
         </div>
 
-
-
-        <div class="pure-u-1">
-          {% block footer %}
+        {% block footer %}
+          <div class="pure-u-1">
             <p>This is the base template (please add a 'footer' block)</p>
-          {% endblock footer %}
-        </div>
-
-
-
+          </div>
+        {% endblock footer %}
       </div>
     </div>
     {% block script %}
