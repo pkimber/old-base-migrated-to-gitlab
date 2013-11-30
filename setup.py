@@ -24,10 +24,13 @@ setup(
     package_data={
         'base': [
             'static/*.*',
+            'static/base/*.*',
+            'static/base/css/*.*',
+            'static/base/js/*.*',
             'templates/*.*',
         ],
     },
-    version='0.0.26',
+    version='0.0.27',
     description='Base',
     author='Patrick Kimber',
     author_email='code@pkimber.net',
