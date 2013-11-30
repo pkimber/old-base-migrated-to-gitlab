@@ -61,29 +61,25 @@
       </div>
 
       <div class="pure-g-r">
-        <h1 class="pure-u-1">
-          Test Section
-        </h1>
+        {% block header %}
+          <div class="pure-u-1 hero">
+            <h1>
+              {% block heading %}
+                This is the base template (please add a 'heading' block)
+              {% endblock heading %}
+            </h1>
+            <h2>
+              {% block sub_heading %}
+                This is the base template (please add a 'sub_heading' block)
+              {% endblock sub_heading %}
+            </h2>
+          </div>
+        {% endblock header %}
 
 
 
 
         <div id="main" class="pure-u-1">
-          {% block header %}
-            <div class="hero">
-              <h1 class="pure-u-1">
-                {% block heading %}
-                  This is the base template (please add a 'heading' block)
-                {% endblock heading %}
-              </h1>
-              <h2 class="pure-u-3-4 l-centered">
-                {% block sub_heading %}
-                  This is the base template (please add a 'sub_heading' block)
-                {% endblock sub_heading %}
-              </h2>
-            </div>
-          {% endblock header %}
-
           <div class="content">
             {% if messages %}
               <div class="pure-g-r">

@@ -1,8 +1,9 @@
 /*
-When setting the primary font stack, apply it to the Pure grid units along with
-the `body`. Pure Grids use specific font stacks to ensure the greatest
-OS/browser compatibility.
-*/
+ * From http://purecss.io/grids/:
+ * When setting the primary font stack, apply it to the Pure grid units along
+ * with the 'body'. Pure Grids use specific font stacks to ensure the greatest
+ * OS/browser compatibility.
+ */
 body,
 .pure-g [class *= "pure-u"],
 .pure-g-r [class *= "pure-u"] {
@@ -12,5 +13,22 @@ body,
 
 body {
     color: #777;
+    margin: 2em 0 1em;
 }
 
+.hero {
+    text-align: center;
+}
+    .hero h1 {
+        font-size: 400%;
+        color: #1f8dd6;
+        font-weight: 100;
+        margin: 0;
+        padding: 0;
+    }
+    .hero h2 {
+        font-weight: 100;
+        font-size: 150%;
+        color: #666;
+        margin: 0.02em 0 0.8em;
+    }
