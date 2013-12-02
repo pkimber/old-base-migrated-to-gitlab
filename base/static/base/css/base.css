@@ -25,19 +25,16 @@ a:visited {
     color: #265778; /* block-normal-text-normal */
 }
 
-.hero {
+.header {
     text-align: center;
+    padding: 0;
 }
-    .hero h1 {
-        font-size: 250%;
-        font-weight: 100;
+    .header h1 {
         color: #1f8dd6;
         margin: 0;
         padding: 0;
     }
-    .hero h2 {
-        font-weight: 100;
-        font-size: 165%;
+    .header h2 {
         color: #666;
         margin: 0.5em 0 0.8em;
     }
