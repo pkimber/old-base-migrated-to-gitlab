@@ -25,6 +25,10 @@ a:visited {
     color: #265778; /* block-normal-text-normal */
 }
 
+.content {
+    max-width: 960px;
+}
+
 .header {
     text-align: center;
     padding: 0;
