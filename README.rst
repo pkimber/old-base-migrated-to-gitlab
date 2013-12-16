@@ -10,9 +10,7 @@ Virtual Environment
 -------------------
 
 Note: replace ``patrick`` with your name (checking in the ``example`` folder
-to make sure a file has been created for you).
-
-::
+to make sure a file has been created for you)::
 
   mkvirtualenv dev_base
   pip install -r requirements/local.txt
@@ -24,17 +22,13 @@ to make sure a file has been created for you).
   add2virtualenv .
   deactivate
 
-To check the order of the imports:
-
-::
+To check the order of the imports::
 
   workon dev_base
   cdsitepackages
   cat _virtualenv_path_extensions.pth
 
-Check the imports are in the correct order e.g:
-
-::
+Check the imports are in the correct order e.g::
 
   /home/your_name/repo/dev/app/base
   /home/your_name/repo/dev/app/login
@@ -42,17 +36,13 @@ Check the imports are in the correct order e.g:
 Testing
 =======
 
-We use ``pytest-django``:
-
-::
+We use ``pytest-django``::
 
   workon dev_base
   find . -name '*.pyc' -delete
   py.test
 
-To stop on first failure:
-
-::
+To stop on first failure::
 
   py.test -x
 
