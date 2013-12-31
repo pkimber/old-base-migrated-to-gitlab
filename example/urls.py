@@ -19,13 +19,6 @@ urlpatterns = patterns(
     url(regex=r'^',
         view=include('login.urls')
         ),
-    url(r'^home/user/$',
-        view=RedirectView.as_view(url=reverse_lazy('base.comment')),
-        name='project.home.user'
-        ),
-    url(regex=r'^base/',
-        view=include('base.urls')
-        ),
 )
 
 urlpatterns += staticfiles_urlpatterns()

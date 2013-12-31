@@ -52,11 +52,14 @@ Usage
 ::
 
   workon dev_base
-  django-admin.py syncdb --noinput
-  django-admin.py migrate --all --noinput
-  django-admin.py demo_data_login
-  django-admin.py demo_data_base
-  django-admin.py runserver
+
+  py.test -x && \
+      touch temp.db && rm temp.db && \
+      django-admin.py syncdb --noinput && \
+      django-admin.py migrate --all --noinput && \
+      django-admin.py demo_data_login && \
+      django-admin.py demo_data_base && \
+      django-admin.py runserver
 
 Release
 =======
