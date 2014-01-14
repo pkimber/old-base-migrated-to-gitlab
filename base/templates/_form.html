@@ -5,7 +5,7 @@
     <legend>{{ legend }}</legend>
     {% for field in form %}
       <div class="pure-control-group">
-        {{ field.label_tag }}
+        <label for='{{ field.id_for_label }}'>{{ field.label }}{% if field.help_text %} {{ field.help_text }}{% endif %}:</label>
         {% for error in field.errors %}
           <aside class="pure-help-inline">{{ error }}</aside>
         {% endfor %}
