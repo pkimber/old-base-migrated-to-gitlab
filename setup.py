@@ -20,7 +20,7 @@ def get_readme():
 
 setup(
     name='pkimber-base',
-    packages=['base', 'base.tests'],
+    packages=['base', 'base.templatetags', 'base.tests'],
     package_data={
         'base': [
             'static/*.*',
@@ -31,7 +31,7 @@ setup(
             'templates/base/*.*',
         ],
     },
-    version='0.0.37',
+    version='0.0.38',
     description='Base',
     author='Patrick Kimber',
     author_email='code@pkimber.net',
