@@ -33,7 +33,7 @@ setup(
             'templates/base/*.*',
         ],
     },
-    version='0.0.40',
+    version='0.0.41',
     description='Base',
     author='Patrick Kimber',
     author_email='code@pkimber.net',
