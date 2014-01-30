@@ -89,3 +89,10 @@ a:visited {
         font-size: 1.47em;
         font-weight: normal;
     }
+
+/*
+ * Tidy file upload control
+ */
+form input[type=file] {
+    font-size: small;
+}
