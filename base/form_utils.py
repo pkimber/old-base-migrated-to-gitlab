@@ -1,4 +1,18 @@
+from bleach import (
+    clean,
+    ALLOWED_TAGS,
+    ALLOWED_ATTRIBUTES,
+)
+
 from django import forms
+
+
+def bleach_clean(data):
+    """Use bleach to clean up html."""
+    attributes = ALLOWED_ATTRIBUTES
+    styles = []
+    tags = ALLOWED_TAGS + [u'br', u'p',]
+    return clean(data, tags=tags, attributes=attributes, styles=styles)
 
 
 class RequiredFieldForm(forms.ModelForm):
