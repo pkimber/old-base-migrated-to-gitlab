@@ -1,3 +1,6 @@
+# -*- encoding: utf-8 -*-
+
+from __future__ import unicode_literals
 """ Django settings """
 from django.core.urlresolvers import reverse_lazy
 
@@ -102,7 +105,8 @@ ROOT_URLCONF = 'example.urls'
 WSGI_APPLICATION = 'example.wsgi.application'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Put strings here, like "/home/html/django_templates"
+    # or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )

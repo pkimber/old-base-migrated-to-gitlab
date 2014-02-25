@@ -1,3 +1,8 @@
+# -*- encoding: utf-8 -*-
+
+from __future__ import unicode_literals
+
+
 def clean_and_save(model_instance):
     """
     Validate and save a model instance.

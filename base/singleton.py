@@ -1,3 +1,6 @@
+# -*- encoding: utf-8 -*-
+
+from __future__ import unicode_literals
 # Written by Senko Rasic <senko.rasic@goodcode.io>
 # Released into Public Domain. Use it as you like.
 

@@ -1,3 +1,8 @@
+# -*- encoding: utf-8 -*-
+
+from __future__ import unicode_literals
+
+
 def get_path(path):
     """Path processing can be used by other views."""
     result = path
