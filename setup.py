@@ -1,6 +1,3 @@
-# -*- encoding: utf-8 -*-
-
-from __future__ import unicode_literals
 import os
 from distutils.core import setup
 
@@ -53,7 +50,7 @@ setup(
             'templates/base/*.*',
         ],
     },
-    version='0.0.45',
+    version='0.0.46',
     description='Base',
     author='Patrick Kimber',
     author_email='code@pkimber.net',
