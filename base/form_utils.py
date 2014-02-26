@@ -14,7 +14,7 @@ def bleach_clean(data):
     """Use bleach to clean up html."""
     attributes = ALLOWED_ATTRIBUTES
     styles = []
-    tags = ALLOWED_TAGS + [u'br', u'p', ]
+    tags = ALLOWED_TAGS + ['br', 'p', ]
     return clean(data, tags=tags, attributes=attributes, styles=styles)
 
 

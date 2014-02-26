@@ -18,20 +18,8 @@ to make sure a file has been created for you)::
   echo "export DJANGO_SETTINGS_MODULE=example.dev_patrick" >> $VIRTUAL_ENV/bin/postactivate
   echo "unset DJANGO_SETTINGS_MODULE" >> $VIRTUAL_ENV/bin/postdeactivate
 
-  add2virtualenv ../login
   add2virtualenv .
   deactivate
-
-To check the order of the imports::
-
-  workon dev_base
-  cdsitepackages
-  cat _virtualenv_path_extensions.pth
-
-Check the imports are in the correct order e.g::
-
-  /home/your_name/repo/dev/app/base
-  /home/your_name/repo/dev/app/login
 
 Testing
 =======
