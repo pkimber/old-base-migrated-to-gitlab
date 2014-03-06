@@ -90,9 +90,6 @@ a:visited {
         font-weight: normal;
     }
 
-/*
- * Tidy file upload control
- */
-form input[type=file] {
+form input, select, textarea {
     font-size: small;
 }
