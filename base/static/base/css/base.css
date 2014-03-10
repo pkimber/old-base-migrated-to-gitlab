@@ -90,6 +90,6 @@ a:visited {
         font-weight: normal;
     }
 
-form input, select, textarea {
+form input, label, select, textarea {
     font-size: small;
 }
