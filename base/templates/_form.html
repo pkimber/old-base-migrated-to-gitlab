@@ -1,4 +1,4 @@
-<form action="." method="post" {% if multipart %}enctype="multipart/form-data"{% endif %} class="pure-form pure-form-stacked">
+<form action="." method="post" {% if multipart %}enctype="multipart/form-data"{% endif %} class="pure-form {% if aligned %}pure-form-aligned{% else %}pure-form-stacked{% endif %}">
   {% csrf_token %}
   {{ form.non_field_errors }}
   <fieldset>
@@ -8,10 +8,15 @@
     {% for field in form %}
       <div class="pure-control-group">
         <label for='{{ field.id_for_label }}'>{{ field.label }}{% if field.help_text %} {{ field.help_text }}{% endif %}:</label>
+        {% if aligned %}
+          {{ field }}
+        {% endif %}
         {% for error in field.errors %}
-          <aside class="pure-help-inline">{{ error }}</aside>
+          <mark>{{ error }}</mark>
         {% endfor %}
-        {{ field }}
+        {% if not aligned %}
+          {{ field }}
+        {% endif %}
       </div>
     {% endfor %}
     <div class="pure-controls">
