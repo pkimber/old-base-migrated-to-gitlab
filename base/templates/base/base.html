@@ -17,6 +17,7 @@
       <link rel="stylesheet" href="{% static 'base/css/font-awesome/css/font-awesome.min.css' %}">
       <link rel="stylesheet" href="{% static 'base/css/side-menu.css' %}">
       <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
+      <link rel="stylesheet" href="{% static 'base/css/zebra_datepicker/metallic.css' %}" type="text/css">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu" type='text/css'>
     {% endblock stylesheets %}
     <link rel="shortcut icon" href="{% static "ico/favicon.ico" %}">
@@ -88,7 +89,18 @@
       </div>
     </div>
     {% block script %}
+      <script src="{% static 'base/js/jquery-1.11.0.min.js' %}" type="text/javascript"></script>
       <script src="{% static 'base/js/ui.js' %}" type="text/javascript"></script>
+      <script src="{% static 'base/js/zebra_datepicker.js' %}" type="text/javascript"></script>
+      <script>
+        $(document).ready(function() {
+          // assuming the controls you want to attach the plugin to
+          // have the "datepicker" class set
+          $('input.datepicker').Zebra_DatePicker({
+            format: 'd/m/Y'
+          });
+        });
+      </script>
     {% endblock script %}
     {% block analytics %}
     {% endblock analytics %}

@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-
 from __future__ import unicode_literals
+
 from bleach import (
     clean,
     ALLOWED_TAGS,
@@ -24,8 +24,13 @@ class RequiredFieldForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(RequiredFieldForm, self).__init__(*args, **kwargs)
         for name in self.fields:
-            if self.fields[name].required:
-                self.fields[name].widget.attrs.update({
+            f = self.fields[name]
+            if f.required:
+                f.widget.attrs.update({
                     'required': None,
                     'placeholder': 'This is a required field',
+                })
+            if isinstance(f, forms.DateField):
+                f.widget.attrs.update({
+                    'class': 'datepicker',
                 })
