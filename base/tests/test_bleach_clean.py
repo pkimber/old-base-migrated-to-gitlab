@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-
 from __future__ import unicode_literals
+
 import unittest
 
 from base.form_utils import bleach_clean
@@ -14,6 +14,21 @@ class TestBleachClean(unittest.TestCase):
             'Hot, hot, hot...',
             bleach_clean(description)
         )
+
+    def test_image(self):
+        description = (
+            '<img alt="" src="http://rodgersindexlarge.jpg" '
+            'style="float:right; height:90px; width:160px"/>'
+        )
+        clean = bleach_clean(description)
+        self.assertIn('<img', clean)
+        self.assertIn('src', clean)
+        self.assertIn('style', clean)
+        self.assertIn('float', clean)
+        self.assertIn('right', clean)
+        self.assertIn('height', clean)
+        self.assertIn('width', clean)
+        self.assertIn('alt', clean)
 
     def test_strong(self):
         description = 'Hot, <strong>hot</strong>, hot...'
@@ -29,7 +44,6 @@ class TestBleachClean(unittest.TestCase):
             'frameborder="0" allowfullscreen=""></iframe>'
         )
         clean = bleach_clean(description)
-        print('\n\n{}\n'.format(clean))
         self.assertIn('<iframe', clean)
         self.assertIn('allowfullscreen', clean)
         self.assertIn('frameborder', clean)

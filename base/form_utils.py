@@ -21,12 +21,23 @@ def bleach_clean(data):
             'height',
             'src',
             'width',
-        ]
+        ],
+        # Image
+        'img': [
+            'alt',
+            'src',
+            'style',
+        ],
     })
-    styles = []
+    styles = [
+        'float',
+        'height',
+        'width',
+    ]
     tags = ALLOWED_TAGS + [
         'br',
         'iframe',
+        'img',
         'p',
     ]
     return clean(data, tags=tags, attributes=attributes, styles=styles)
