@@ -21,3 +21,18 @@ class TestBleachClean(unittest.TestCase):
             'Hot, <strong>hot</strong>, hot...',
             bleach_clean(description)
         )
+
+    def test_youtube(self):
+        description = (
+            '<iframe width="640" height="360" '
+            'src="//www.youtube.com/embed/UB-DhUIvcac?rel=0" '
+            'frameborder="0" allowfullscreen=""></iframe>'
+        )
+        clean = bleach_clean(description)
+        print('\n\n{}\n'.format(clean))
+        self.assertIn('<iframe', clean)
+        self.assertIn('allowfullscreen', clean)
+        self.assertIn('frameborder', clean)
+        self.assertIn('height', clean)
+        self.assertIn('src', clean)
+        self.assertIn('width', clean)

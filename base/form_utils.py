@@ -13,8 +13,22 @@ from django import forms
 def bleach_clean(data):
     """Use bleach to clean up html."""
     attributes = ALLOWED_ATTRIBUTES
+    attributes.update({
+        # YouTube
+        'iframe': [
+            'allowfullscreen',
+            'frameborder',
+            'height',
+            'src',
+            'width',
+        ]
+    })
     styles = []
-    tags = ALLOWED_TAGS + ['br', 'p', ]
+    tags = ALLOWED_TAGS + [
+        'br',
+        'iframe',
+        'p',
+    ]
     return clean(data, tags=tags, attributes=attributes, styles=styles)
 
 
