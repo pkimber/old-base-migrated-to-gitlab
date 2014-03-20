@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
-
 from __future__ import unicode_literals
+
+from django.contrib.sites.models import Site
 
 
 def clean_and_save(model_instance):
@@ -16,3 +17,17 @@ def clean_and_save(model_instance):
     model_instance.save()
     model_instance.full_clean()
     return model_instance
+
+
+def init_site(pk, name, domain):
+    """Use this for setting up initial sites."""
+    try:
+        site = Site.objects.get(pk=pk)
+        site.name = name
+        site.domain = domain
+        site.save()
+    except Site.DoesNotExist:
+        site = clean_and_save(
+            Site(**dict(pk=pk, name=name, domain=domain))
+        )
+    return site
