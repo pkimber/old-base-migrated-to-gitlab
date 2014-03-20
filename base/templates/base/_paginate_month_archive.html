@@ -1,0 +1,27 @@
+<div class="pure-menu pure-menu-open pure-menu-horizontal">
+  <ul>
+    {% if previous_month %}
+      <li>
+        <a href="{% url current_url previous_month|date:"Y" previous_month|date:"b" %}">
+          <i class="fa fa-backward"></i>
+          {{ previous_month|date:"M Y" }}
+        </a>
+      </li>
+    {% endif %}
+    {% if today %}
+      <li>
+        <a href="{% url current_url today|date:"Y" today|date:"b" %}">
+          <i class="fa fa-home"></i>
+        </a>
+      </li>
+    {% endif %}
+    {% if next_month %}
+      <li>
+        <a href="{% url current_url next_month|date:"Y" next_month|date:"b" %}">
+          {{ next_month|date:"M Y" }}
+          <i class="fa fa-forward"></i>
+        </a>
+      </li>
+    {% endif %}
+  </ul>
+</div>
