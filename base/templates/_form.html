@@ -1,6 +1,8 @@
 <form action="." method="post" {% if multipart %}enctype="multipart/form-data"{% endif %} class="pure-form {% if aligned %}pure-form-aligned{% else %}pure-form-stacked{% endif %}">
   {% csrf_token %}
-  {{ form.non_field_errors }}
+  {% if form.non_field_errors %}
+    {{ form.non_field_errors }}
+  {% endif %}
   <fieldset>
     {% if legend %}
       <legend>{{ legend }}</legend>
