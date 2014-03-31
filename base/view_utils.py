@@ -18,6 +18,7 @@ class BaseMixin(object):
         context = super(BaseMixin, self).get_context_data(**kwargs)
         context.update(dict(
             path=get_path(self.request.path),
+            request_path=self.request.path,
             today=datetime.today(),
         ))
         return context
