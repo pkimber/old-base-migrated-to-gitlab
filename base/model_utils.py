@@ -53,7 +53,7 @@ def copy_model_instance_to(from_obj, to_class):
     Copy the data for a model instance to a new class which has the same
     fields.
 
-    My variation on the `copy_model_instance` function (below)...
+    My variation on the `copy_model_instance` function (above)...
     """
     initial = _get_model_instance_data(from_obj)
     return to_class(**initial)
