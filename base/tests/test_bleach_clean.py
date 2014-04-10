@@ -30,6 +30,15 @@ class TestBleachClean(unittest.TestCase):
         self.assertIn('width', clean)
         self.assertIn('alt', clean)
 
+    def test_link(self):
+        description = (
+            '<a target="_blank" href="http://bbc.co.uk">http://bbc.co.uk</a>'
+        )
+        clean = bleach_clean(description)
+        self.assertIn('<a', clean)
+        self.assertIn('href', clean)
+        self.assertIn('target', clean)
+
     def test_strong(self):
         description = 'Hot, <strong>hot</strong>, hot...'
         self.assertEquals(

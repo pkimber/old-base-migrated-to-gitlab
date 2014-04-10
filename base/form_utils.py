@@ -15,6 +15,11 @@ def bleach_clean(data):
     """Use bleach to clean up html."""
     attributes = ALLOWED_ATTRIBUTES
     attributes.update({
+        # link
+        'a': [
+            'href',
+            'target',
+        ],
         # YouTube
         'iframe': [
             'allowfullscreen',
