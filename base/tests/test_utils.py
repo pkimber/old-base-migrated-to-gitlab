@@ -48,7 +48,7 @@ class PermTestCase(TestCase):
 
     def _assert_no_web(self, url):
         """a user who is logged in should not have access to this url"""
-        user = self._login_web()
+        user = self.login_web()
         response = self.client.get(url)
         self.assertEqual(
             response.status_code,
@@ -76,7 +76,7 @@ class PermTestCase(TestCase):
 
     def _assert_web(self, url):
         """check that a logged in user can view the url"""
-        user = self._login_web()
+        user = self.login_web()
         response = self.client.get(url)
         self.assertEqual(
             response.status_code,
@@ -87,7 +87,7 @@ class PermTestCase(TestCase):
             )
         )
 
-    def _login_web(self):
+    def login_web(self):
         web = get_user_web()
         self.client.login(
             username=web.username, password=web.username
