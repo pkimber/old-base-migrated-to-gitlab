@@ -49,6 +49,14 @@ def bleach_clean(data):
     return clean(data, tags=tags, attributes=attributes, styles=styles)
 
 
+def set_widget_required(field):
+    """Why do I need to call this when setting 'required' on the form."""
+    field.widget.attrs.update({
+        'required': None,
+        'placeholder': 'This is a required field',
+    })
+
+
 class RequiredFieldForm(forms.ModelForm):
     """Add the 'required' attribute"""
 
@@ -57,10 +65,7 @@ class RequiredFieldForm(forms.ModelForm):
         for name in self.fields:
             f = self.fields[name]
             if f.required:
-                f.widget.attrs.update({
-                    'required': None,
-                    'placeholder': 'This is a required field',
-                })
+                set_widget_required(f)
             if isinstance(f, forms.DateField):
                 f.widget.attrs.update({
                     'class': 'datepicker',
