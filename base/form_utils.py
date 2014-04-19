@@ -55,6 +55,7 @@ def set_widget_required(field):
         'required': None,
         'placeholder': 'This is a required field',
     })
+    field.required = True
 
 
 class RequiredFieldForm(forms.ModelForm):
