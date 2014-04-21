@@ -10,6 +10,8 @@ from bleach import (
 from django import forms
 from django.contrib.auth.models import User
 
+from base.model_utils import username_validator
+
 
 def bleach_clean(data):
     """Use bleach to clean up html."""
@@ -115,9 +117,14 @@ class UserCreationForm(RequiredFieldForm):
             )
         return password2
 
-    def save(self, commit=True):
-        app = super(UserCreationForm, self).save(commit=False)
-        app.set_password(self.cleaned_data["password1"])
-        if commit:
-            app.save()
-        return app
+
+class UserUsernameCreationForm(UserCreationForm):
+
+    username = forms.CharField(
+        max_length=30,
+        help_text=(
+            '30 characters or fewer. Letters, numbers, '
+            'dot, dash and underscore.'
+        ),
+        validators=[username_validator]
+    )

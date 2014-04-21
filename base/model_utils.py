@@ -1,8 +1,11 @@
 # -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
 
+import re
+
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
+from django.core.validators import RegexValidator
 from django.db import models
 from django.db.models import AutoField
 
@@ -20,6 +23,13 @@ private_file_store = FileSystemStorage(
 ftp_file_store = FileSystemStorage(
     location=settings.FTP_STATIC_DIR,
     base_url=settings.FTP_STATIC_URL,
+)
+
+
+username_validator = RegexValidator(
+    re.compile('^[\w.@+-]+$'),
+    'Enter a valid username.',
+    'invalid'
 )
 
 
