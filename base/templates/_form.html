@@ -9,7 +9,9 @@
     {% endif %}
     {% for field in form %}
       <div class="pure-control-group">
-        <label for='{{ field.id_for_label }}'>{{ field.label }}{% if field.help_text %} {{ field.help_text }}{% endif %}:</label>
+        {% if field.label %}
+          <label for='{{ field.id_for_label }}'>{{ field.label }}{% if field.help_text %} - {{ field.help_text }}{% endif %}:</label>
+        {% endif %}
         {% if aligned %}
           {{ field }}
         {% endif %}
