@@ -11,6 +11,12 @@ from login.tests.scenario import (
 
 class PermTestCase(TestCase):
 
+    def assert_anon(self, url):
+        """only anonymous users should have access to this url"""
+        self.assert_any(url)
+        self._assert_no_staff(url)
+        self._assert_no_web(url)
+
     def assert_any(self, url):
         """all users (logged in or not) should have access to this url"""
         self.client.logout()
@@ -46,6 +52,19 @@ class PermTestCase(TestCase):
             )
         )
 
+    def _assert_no_staff(self, url):
+        """a member of staff should not have access to this url"""
+        user = self.login_staff()
+        response = self.client.get(url)
+        self.assertEqual(
+            response.status_code,
+            302,
+            "status {}: user '{}' should not have access "
+            "to this url: '{}'".format(
+                response.status_code, user.username, url
+            )
+        )
+
     def _assert_no_web(self, url):
         """a user who is logged in should not have access to this url"""
         user = self.login_web()
@@ -60,10 +79,7 @@ class PermTestCase(TestCase):
         )
 
     def _assert_staff(self, url):
-        staff = get_user_staff()
-        self.client.login(
-            username=staff.username, password=staff.username
-        )
+        staff = self.login_staff()
         response = self.client.get(url)
         self.assertEqual(
             response.status_code,
@@ -86,6 +102,13 @@ class PermTestCase(TestCase):
                 response.status_code, user.username, url
             )
         )
+
+    def login_staff(self):
+        staff = get_user_staff()
+        self.client.login(
+            username=staff.username, password=staff.username
+        )
+        return staff
 
     def login_web(self):
         web = get_user_web()
