@@ -2,12 +2,17 @@ body {
     color: #777;
 }
 
+.pure-img-responsive {
+    max-width: 100%;
+    height: auto;
+}
+
 /*
 Add transition to containers so they can push in and out.
 */
 #layout,
 #menu,
-.pure-menu-link {
+.menu-link {
     -webkit-transition: all 0.2s ease-out;
     -moz-transition: all 0.2s ease-out;
     -ms-transition: all 0.2s ease-out;
@@ -19,10 +24,21 @@ Add transition to containers so they can push in and out.
 This is the parent `<div>` that contains the menu and the content area.
 */
 #layout {
-    padding-left: 150px; /* left col width "#menu" */
-    left: 0;
+    position: relative;
+    padding-left: 0;
 }
+    #layout.active {
+        position: relative;
+        left: 150px;
+    }
+        #layout.active #menu {
+            left: 150px;
+            width: 150px;
+        }
 
+        #layout.active .menu-link {
+            left: 150px;
+        }
 /*
 The content `<div>` is where all your content goes.
 */
@@ -59,24 +75,24 @@ The content `<div>` is where all your content goes.
     color: #888;
 }
 
+
+
 /*
 The `#menu` `<div>` is the parent `<div>` that contains the `.pure-menu` that
 appears on the left side of the page.
-
-By using the combination of `position: fixed; top: 0; bottom:0;`, we can make
-the menu have 100% height and be fixed on the page as the rest of it scrolls.
 */
+
 #menu {
-    margin-left: -150px; /* this should be "#menu" width */
+    margin-left: -150px; /* "#menu" width */
     width: 150px;
     position: fixed;
     top: 0;
-    left: 150px; /* this should be "#menu" width */
+    left: 0;
     bottom: 0;
-    z-index: 1; /* so the menu or its navicon stays above all content */
+    z-index: 1000; /* so the menu or its navicon stays above all content */
     background: #191818;
     overflow-y: auto;
-    -webkit-overflow-scroll: touch; /* for smooth scrolling on mobile */
+    -webkit-overflow-scrolling: touch;
 }
     /*
     All anchors inside the menu should be styled like this.
@@ -142,47 +158,49 @@ how it works:
 */
 
 /*
-`.pure-menu-link` represents the responsive menu toggle that shows/hides on
+`.menu-link` represents the responsive menu toggle that shows/hides on
 small screens.
 */
-.pure-menu-link {
-    display: none; /* show this only on small screens */
+.menu-link {
+    position: fixed;
+    display: block; /* show this only on small screens */
     top: 0;
-    left: 150px; /* `#menu`'s width */
+    left: 0; /* "#menu width" */
     background: #000;
+    background: rgba(0,0,0,0.7);
     font-size: 10px; /* change this value to increase/decrease button size */
     z-index: 10;
     width: 2em;
     height: auto;
-    padding: 2.2em 1.6em;
+    padding: 2.1em 1.6em;
 }
 
-    .pure-menu-link:hover,
-    .pure-menu-link:focus {
+    .menu-link:hover,
+    .menu-link:focus {
         background: #000;
     }
 
-    .pure-menu-link span {
+    .menu-link span {
         position: relative;
         display: block;
     }
 
-    .pure-menu-link span,
-    .pure-menu-link span:before,
-    .pure-menu-link span:after {
+    .menu-link span,
+    .menu-link span:before,
+    .menu-link span:after {
         background-color: #fff;
         width: 100%;
         height: 0.2em;
     }
 
-        .pure-menu-link span:before,
-        .pure-menu-link span:after {
+        .menu-link span:before,
+        .menu-link span:after {
             position: absolute;
             margin-top: -0.6em;
             content: " ";
         }
 
-        .pure-menu-link span:after {
+        .menu-link span:after {
             margin-top: 0.6em;
         }
 
@@ -190,41 +208,31 @@ small screens.
 /* -- Responsive Styles (Media Queries) ------------------------------------- */
 
 /*
-Hides the menu at `767px`, but modify this based on your app's needs.
+Hides the menu at `48em`, but modify this based on your app's needs.
 */
-@media (max-width: 767px) {
+@media (min-width: 48em) {
 
-    .header {
-        text-align: left;
+    .header,
+    .content {
+        padding-left: 2em;
+        padding-right: 2em;
     }
 
-    /*
-    Navigation Push styles.
-    */
     #layout {
-        position: relative;
-        padding-left: 0;
+        padding-left: 150px; /* left col width "#menu" */
+        left: 0;
     }
-        #layout.active {
-            position: relative;
-            left: 150px;
-        }
-            #layout.active #menu {
-                left: 150px;
-                width: 150px;
-            }
-
     #menu {
-        left: 0;
+        left: 150px;
     }
 
-    .pure-menu-link {
+    .menu-link {
         position: fixed;
-        left: 0;
-        display: block; /* show the button on small screens */
+        left: 150px;
+        display: none;
     }
 
-    #layout.active .pure-menu-link {
+    #layout.active .menu-link {
         left: 150px;
     }
 }

@@ -14,6 +14,14 @@
     </title>
     {% block stylesheets %}
       <link rel="stylesheet" href="{% static 'pure-min.css' %}">
+      <!--[if lte IE 8]>
+        <link rel="stylesheet" href="{% static 'grids-responsive-old-ie-min.css' %}">
+        <link rel="stylesheet" href="{% static 'base/css/side-menu-old-ie.css' %}">
+      <![endif]-->
+      <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="{% static 'grids-responsive-min.css' %}">
+        <link rel="stylesheet" href="{% static 'base/css/side-menu.css' %}">
+      <!--<![endif]-->
       <link rel="stylesheet" href="{% static 'base/css/font-awesome/css/font-awesome.min.css' %}">
       <link rel="stylesheet" href="{% static 'base/css/side-menu.css' %}">
       <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
