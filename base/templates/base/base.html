@@ -107,6 +107,11 @@
           $('input.datepicker').Zebra_DatePicker({
             format: 'd/m/Y'
           });
+          // How to set the focus to the first input element in an HTML form
+          // http://stackoverflow.com/questions/277544/how-to-set-the-focus-to-the-first-input-element-in-an-html-form-independent-from
+          $('form:first *:input[type!=hidden]:first').focus();
+        });
+        $(document).ready(function() {
         });
       </script>
     {% endblock script %}
