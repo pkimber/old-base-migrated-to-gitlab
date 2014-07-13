@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 
+from login.tests.factories import TEST_PASSWORD
 from login.tests.scenario import (
     get_user_staff,
     get_user_web,
@@ -103,16 +104,17 @@ class PermTestCase(TestCase):
             )
         )
 
-    def login_staff(self):
-        staff = get_user_staff()
-        self.client.login(
-            username=staff.username, password=staff.username
+    def _login_user(self, user):
+        self.assertTrue(
+            self.client.login(username=user.username, password='letmein'),
+            "Cannot login user '{}', password '{}'.".format(
+                user.username, TEST_PASSWORD
+            )
         )
-        return staff
+        return user
+
+    def login_staff(self):
+        return self._login_user(get_user_staff())
 
     def login_web(self):
-        web = get_user_web()
-        self.client.login(
-            username=web.username, password=web.username
-        )
-        return web
+        return self._login_user(get_user_web())
