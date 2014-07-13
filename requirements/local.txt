@@ -2,6 +2,7 @@
 -e .
 -e ../login
 beautifulsoup4
+factory-boy
 gitpython
 hgapi
 ipdb
