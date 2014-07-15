@@ -1,0 +1,29 @@
+{% extends "project/base.html" %}
+
+{% block sub_title %}
+  Permission denied
+{% endblock sub_title %}
+
+{% block sub_heading %}
+  Permission denied
+{% endblock sub_heading %}
+
+{% block content %}
+  <div class="pure-g-r">
+    <div class="pure-u-1">
+      <h1>Oops</h1>
+      <p>
+        Sorry, you don't have permission to view the page.
+      </p>
+      <p>
+        {% if user.is_authenticated %}
+          <a href="{% url 'project.home.user' %}">
+        {% else %}
+          <a href="{% url 'project.home' %}">
+        {% endif %}
+          Click here to return to your home page...
+        </a>
+      </p>
+    </div>
+  </div>
+{% endblock content %}
