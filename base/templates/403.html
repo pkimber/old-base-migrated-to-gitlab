@@ -16,12 +16,8 @@
         Sorry, you don't have permission to view the page.
       </p>
       <p>
-        {% if user.is_authenticated %}
-          <a href="{% url 'project.home.user' %}">
-        {% else %}
-          <a href="{% url 'project.home' %}">
-        {% endif %}
-          Click here to return to your home page...
+        <a href="{% url 'project.home' %}">
+          Click here to return to the home page...
         </a>
       </p>
     </div>
