@@ -16,7 +16,7 @@
           {{ field }}
         {% endif %}
         {% for error in field.errors %}
-          <mark>{{ error }}</mark>
+          <span class="errorlist"><mark>{{ error }}</mark></span>
         {% endfor %}
         {% if not aligned %}
           {{ field }}
