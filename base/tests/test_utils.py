@@ -70,9 +70,9 @@ class PermTestCase(TestCase):
         """a user who is logged in should not have access to this url"""
         user = self.login_web()
         response = self.client.get(url)
-        self.assertEqual(
+        self.assertIn(
             response.status_code,
-            302,
+            (302, 403),
             "status {}: user '{}' should not have access "
             "to this url: '{}'".format(
                 response.status_code, user.username, url
