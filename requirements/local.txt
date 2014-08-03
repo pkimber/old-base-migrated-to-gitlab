@@ -2,6 +2,7 @@
 -e .
 -e ../login
 beautifulsoup4
+devpi-client
 factory-boy
 gitpython
 hgapi
