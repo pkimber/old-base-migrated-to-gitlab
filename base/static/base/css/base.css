@@ -90,6 +90,12 @@ a:visited {
         font-weight: normal;
     }
 
+.testing {
+    text-align: center;
+    padding: 0;
+    background: rgb(255, 255, 102);
+}
+
 form input, label, select, textarea {
     font-size: small;
 }

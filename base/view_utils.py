@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 
 from datetime import datetime
 
+from django.conf import settings
+
 
 def get_path(path):
     """Path processing can be used by other views."""
@@ -19,6 +21,7 @@ class BaseMixin(object):
         context.update(dict(
             path=get_path(self.request.path),
             request_path=self.request.path,
+            testing=settings.TESTING,
             today=datetime.today(),
         ))
         return context
