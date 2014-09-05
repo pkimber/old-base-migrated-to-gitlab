@@ -5,6 +5,8 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+from .views import HomeView
+
 
 admin.autodiscover()
 
@@ -12,7 +14,7 @@ admin.autodiscover()
 urlpatterns = patterns(
     '',
     url(regex=r'^$',
-        view='example.views.index',
+        view=HomeView.as_view(),
         name='project.home'
         ),
     url(regex=r'^admin/',

@@ -6,14 +6,6 @@ from datetime import datetime
 from django.conf import settings
 
 
-def get_path(path):
-    """Path processing can be used by other views."""
-    result = path
-    if result == '/':
-        result = 'home'
-    return result
-
-
 class BaseMixin(object):
 
     def get_context_data(self, **kwargs):
@@ -25,3 +17,11 @@ class BaseMixin(object):
             today=datetime.today(),
         ))
         return context
+
+
+def get_path(path):
+    """Path processing can be used by other views."""
+    result = path
+    if result == '/':
+        result = 'home'
+    return result
