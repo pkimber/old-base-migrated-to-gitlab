@@ -15,7 +15,7 @@ class TestUrlUtils(unittest.TestCase):
         url = url_with_querystring(
             reverse('login'),
             responsible=5,
-            scheduled_for=date.today(),
+            scheduled_for=date(2014, 9, 5),
         )
         # /accounts/login/?responsible=5&scheduled_for=2014-09-05
         self.assertIn('/accounts/login/', url)
