@@ -8,6 +8,7 @@ def url_with_querystring(path, **kwargs):
     """Create a URL with a query string.
 
     # e.g.
+    from base.url_utils import url_with_querystring
     url = url_with_querystring(
         reverse(order_add),
         responsible=employee.id,
