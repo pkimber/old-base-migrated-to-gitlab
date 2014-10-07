@@ -50,7 +50,11 @@
             {% if user.is_authenticated %}
               <li><a href="{% url 'logout' %}">Logout</a></li>
             {% else %}
-              <li><a href="{% url 'login' %}">Login</a></li>
+              <li {% if 'login' in path %}class="pure-menu-selected"{% endif %}>
+                <a href="{% url 'login' %}">
+                  Login
+                </a>
+              </li>
             {% endif %}
           </ul>
         </div>
