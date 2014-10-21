@@ -3,7 +3,10 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 
-from login.tests.factories import TEST_PASSWORD
+from login.tests.factories import (
+    TEST_PASSWORD,
+    UserFactory,
+)
 from login.tests.scenario import (
     get_user_staff,
     get_user_web,
@@ -11,6 +14,20 @@ from login.tests.scenario import (
 
 
 class PermTestCase(TestCase):
+
+    def setup_users(self):
+        """Using factories - set-up users for permissions test cases."""
+        UserFactory(
+            username='admin',
+            email='admin@pkimber.net',
+            is_staff=True,
+            is_superuser=True
+        )
+        UserFactory(username='staff', email='staff@pkimber.net', is_staff=True)
+        UserFactory(
+            username='web', email='web@pkimber.net',
+            first_name='William', last_name='Webber'
+        )
 
     def assert_anon(self, url):
         """only anonymous users should have access to this url"""
