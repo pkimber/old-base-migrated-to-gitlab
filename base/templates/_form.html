@@ -1,4 +1,4 @@
-<form action="." method="post" {% if multipart %}enctype="multipart/form-data"{% endif %} class="pure-form {% if aligned %}pure-form-aligned{% else %}pure-form-stacked{% endif %}">
+<form id="kb-form" action="." method="post" {% if multipart %}enctype="multipart/form-data"{% endif %} class="pure-form {% if aligned %}pure-form-aligned{% else %}pure-form-stacked{% endif %}{% if dropzone %} dropzone{% endif %}">
   {% csrf_token %}
   {% if form.non_field_errors %}
     {{ form.non_field_errors }}
@@ -32,6 +32,9 @@
   {% for hidden in form.hidden_fields %}
     {{ hidden }}
   {% endfor %}
+  {% if dropzone %}
+    <input type="hidden" class="dz-message" />
+  {% endif %}
   {% if next %}
     <input type="hidden" name="next" value="{{ next }}" />
   {% endif %}
