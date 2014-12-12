@@ -90,6 +90,12 @@ a:visited {
         font-weight: normal;
     }
 
+.message {
+    text-align: center;
+    padding: 0;
+    background: rgb(224, 255, 184);
+}
+
 .testing {
     text-align: center;
     padding: 0;

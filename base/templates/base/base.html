@@ -88,13 +88,13 @@
         <div class="pure-g-r">
           <div class="pure-u-1">
             {% if messages %}
-              <div class="pure-g-r">
-                <div class="pure-u-1">
-                  <aside>
+              <div class="message">
+                <div class="pure-g-r">
+                  <div class="pure-u-1">
                     {% for message in messages %}
                       <p>{{ message }}</p>
                     {% endfor %}
-                  </aside>
+                  </div>
                 </div>
               </div>
             {% endif %}
@@ -104,7 +104,6 @@
             <br />
           </div>
         </div>
-
         {% block footer %}
           <div class="pure-u-1">
             <p>This is the base template (please add a 'footer' block)</p>
