@@ -25,10 +25,6 @@ a:visited {
     color: #265778; /* block-normal-text-normal */
 }
 
-.content {
-    max-width: 960px;
-}
-
 .header {
     text-align: center;
     padding: 0;
@@ -78,6 +74,10 @@ a:visited {
  */
 .l-box {
     padding: 1.3em;
+}
+
+.r-box {
+    padding-right: 0.5em;
 }
 
 .marketing-ribbon {
