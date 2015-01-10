@@ -20,4 +20,7 @@ def url_with_querystring(path, **kwargs):
     http://stackoverflow.com/questions/2778247/how-do-i-construct-a-django-reverse-url-using-query-args#answer-5341769
 
     """
-    return path + '?' + urlencode(kwargs)
+    if kwargs:
+        return path + '?' + urlencode(kwargs)
+    else:
+        return path
