@@ -52,7 +52,7 @@
                 <a class="pure-menu-link" href="{% url 'logout' %}">Logout</a>
               </li>
             {% else %}
-            <li class="{% if 'login' in path %}pure-menu-selected{% else %}pure-menu-item{% endif %}">
+            <li class="pure-menu-item{% if 'login' in path %} pure-menu-selected{% endif %}">
               <a class="pure-menu-link" href="{% url 'login' %}">Login</a>
             </li>
             {% endif %}
