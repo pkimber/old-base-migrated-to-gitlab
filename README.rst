@@ -41,4 +41,4 @@ Usage
 Release
 =======
 
-https://django-dev-and-deploy-using-salt.readthedocs.org/
+https://www.pkimber.net/open/
