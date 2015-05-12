@@ -1,4 +1,4 @@
-<form action="." method="post" {% if multipart %}enctype="multipart/form-data"{% endif %} class="pure-form {% if aligned %}pure-form-aligned{% else %}pure-form-stacked{% endif %}">
+<form action="." id="kb-form" method="post" {% if multipart %}enctype="multipart/form-data"{% endif %} class="pure-form {% if aligned %}pure-form-aligned{% else %}pure-form-stacked{% endif %}{% if dropzone %} dropzone{% endif %}">
   {% csrf_token %}
   {% if form.non_field_errors %}
     {{ form.non_field_errors }}
@@ -23,6 +23,11 @@
         {% endif %}
       </div>
     {% endfor %}
+    {% if dropzone %}
+      <div class="pure-control-group">
+        <div class="dropzone-previews"></div>
+      </div>
+    {% endif %}
     <div class="pure-controls">
       <p>
         <input type="submit" value="{% if submit %}{{ submit }}{% else %}Submit{% endif %}" class="pure-button pure-button-primary" />
