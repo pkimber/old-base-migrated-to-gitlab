@@ -1,3 +1,4 @@
 -r base.txt
 -e .
-git+git@github.com:pkimber/login.git@924-django-1-8#egg=login
+git+https://github.com/pkimber/login.git@924-django-1-8#egg=login
+git+https://github.com/pkimber/mail.git@924-django-1-8#egg=mail
