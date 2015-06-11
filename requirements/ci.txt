@@ -1,0 +1,7 @@
+-r base.txt
+-e .
+factory-boy
+git+https://github.com/pkimber/login.git@924-django-1-8#egg=login
+git+https://github.com/pkimber/mail.git@924-django-1-8#egg=mail
+pytest==2.7.1
+pytest-django==2.8.0

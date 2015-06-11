@@ -4,7 +4,7 @@
   {% load static %}
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
       {% block title %}
         This is the base template (please add a 'title' block)
@@ -15,14 +15,14 @@
     </title>
     {% compress css %}
       {% block stylesheets %}
-        <link rel="stylesheet" href="{% static 'vendor/css/pure/pure-min.css' %}">
+        <link rel="stylesheet" href="{% static 'vendor/css/pure/pure-min.0.6.0.css' %}">
         <!--[if lte IE 8]>
-          <link rel="stylesheet" href="{% static 'vendor/css/pure/grids-responsive-old-ie-min.css' %}">
-          <link rel="stylesheet" href="{% static 'vendor/css/pure/side-menu-old-ie.css' %}">
+          <link rel="stylesheet" href="{% static 'vendor/css/pure/grids-responsive-old-ie-min.0.6.0.css' %}">
+          <link rel="stylesheet" href="{% static 'vendor/css/pure/side-menu-old-ie.0.6.0.css' %}">
         <![endif]-->
         <!--[if gt IE 8]><!-->
-          <link rel="stylesheet" href="{% static 'vendor/css/pure/grids-responsive-min.css' %}">
-          <link rel="stylesheet" href="{% static 'vendor/css/pure/side-menu.css' %}">
+          <link rel="stylesheet" href="{% static 'vendor/css/pure/grids-responsive-min.0.6.0.css' %}">
+          <link rel="stylesheet" href="{% static 'vendor/css/pure/side-menu.0.6.0.css' %}">
         <!--<![endif]-->
         <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
         <link rel="stylesheet" href="{% static 'vendor/css/zebra_datepicker/metallic.css' %}" type="text/css">
@@ -30,8 +30,8 @@
     {% endcompress css %}
     {% block stylesheets_extra %}
     {% endblock stylesheets_extra %}
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu" type='text/css'>
+    <link rel="stylesheet" href="{% static 'vendor/css/font-awesome/css/font-awesome.min.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
     <link rel="shortcut icon" href="{% static 'ico/favicon.ico' %}">
   </head>
   <body>
@@ -42,19 +42,19 @@
         <span></span>
       </a>
       <div id="menu">
-        <div class="pure-menu pure-menu-open">
+        <div class="pure-menu">
           <a class="pure-menu-heading" href="{% url 'project.home' %}">Home</a>
-          <ul>
+          <ul class="pure-menu-list">
             {% block menu %}
             {% endblock menu %}
             {% if user.is_authenticated %}
-              <li><a href="{% url 'logout' %}">Logout</a></li>
-            {% else %}
-              <li {% if 'login' in path %}class="pure-menu-selected"{% endif %}>
-                <a href="{% url 'login' %}">
-                  Login
-                </a>
+              <li class="pure-menu-item">
+                <a class="pure-menu-link" href="{% url 'logout' %}">Logout</a>
               </li>
+            {% else %}
+            <li class="pure-menu-item{% if 'login' in path %} pure-menu-selected{% endif %}">
+              <a class="pure-menu-link" href="{% url 'login' %}">Login</a>
+            </li>
             {% endif %}
           </ul>
         </div>
@@ -113,8 +113,12 @@
     </div>
     {% compress js %}
       {% block script %}
+        <!--[if lt IE 9]>
+          <script src="{% static 'vendor/js/html5shiv/html5shiv.js' %}"></script>
+        <![endif]-->
         <script src="{% static 'vendor/js/jquery-1.11.0.min.js' %}" type="text/javascript"></script>
-        <script src="{% static 'vendor/js/pure/ui.js' %}" type="text/javascript"></script>
+        <script src="{% static 'vendor/js/jquery.autocomplete.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'vendor/js/pure/ui.0.6.0.js' %}" type="text/javascript"></script>
         <script src="{% static 'vendor/js/zebra_datepicker.js' %}" type="text/javascript"></script>
         <script>
           $(document).ready(function() {

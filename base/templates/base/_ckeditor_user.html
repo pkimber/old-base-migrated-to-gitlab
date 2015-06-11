@@ -1,0 +1,13 @@
+{% load staticfiles %}
+<script src="{% static 'vendor/js/ckeditor/ckeditor.js' %}" type="text/javascript"></script>
+<script type="text/javascript">
+  CKEDITOR.replace('{% if id_textarea %}{{ id_textarea }}{% else %}id_description{% endif %}',{
+    removePlugins : 'elementspath', 
+    resize_enabled : false,
+    toolbar: [
+      { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
+      { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
+      { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ] },
+    ]
+  });
+</script>
