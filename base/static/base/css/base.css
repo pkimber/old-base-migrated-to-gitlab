@@ -80,6 +80,10 @@ a:visited {
     padding-right: 0.5em;
 }
 
+.t-box {
+    padding-top: 1.3em;
+}
+
 .marketing-ribbon {
     border-bottom: 1px solid #eee;
     padding: 1em 0;
