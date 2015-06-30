@@ -102,7 +102,7 @@ setup(
             'templates/base/*.*',
         ],
     },
-    version='0.1.51',
+    version='0.1.52',
     description='Base',
     author='Patrick Kimber',
     author_email='code@pkimber.net',
