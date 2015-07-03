@@ -46,6 +46,13 @@ class TestBleachClean(unittest.TestCase):
             bleach_clean(description)
         )
 
+    def test_underline(self):
+        description = 'Hot, <u>hot</u>, hot...'
+        self.assertEquals(
+            'Hot, <u>hot</u>, hot...',
+            bleach_clean(description)
+        )
+
     def test_youtube(self):
         description = (
             '<iframe width="640" height="360" '
