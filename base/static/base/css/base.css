@@ -13,7 +13,7 @@ html, button, input, select, textarea,
 
 body {
     color: #777;
-    margin: 2em 0 1em;
+    margin: 0 0 1em;
 }
 
 a {
@@ -126,3 +126,13 @@ a:visited {
 .autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
 .autocomplete-group { padding: 2px 5px; }
 .autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
+
+
+/**
+ * Suggested by Malcolm to ensure the scroll bars appear even if not needed to
+ * stop the page moving when you went from a tab that had scroll and one that
+ * didn't.
+ */
+html {
+    overflow-y: scroll;
+}
