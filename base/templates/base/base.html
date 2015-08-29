@@ -81,7 +81,7 @@
       </div>
       {% if testing %}
         <div class="testing">
-          <div class="pure-g-r">
+          <div class="pure-g">
             <div class="pure-u-1">
               Testing
             </div>
@@ -105,25 +105,20 @@
         {% endblock header %}
       </div>
       <div class="content">
-        <div class="pure-g-r">
-          <div class="pure-u-1">
-            {% if messages %}
+        {% if messages %}
+          <div class="pure-g">
+            <div class="pure-u-1">
               <div class="message">
-                <div class="pure-g-r">
-                  <div class="pure-u-1">
-                    {% for message in messages %}
-                      <p>{{ message }}</p>
-                    {% endfor %}
-                  </div>
-                </div>
+                {% for message in messages %}
+                  <p>{{ message }}</p>
+                {% endfor %}
               </div>
-            {% endif %}
-            {% block content %}
-              <p>This is the base template (please add a 'content' block)</p>
-            {% endblock content %}
-            <br />
+            </div>
           </div>
-        </div>
+        {% endif %}
+        {% block content %}
+          <p>This is the base template (please add a 'content' block)</p>
+        {% endblock content %}
         {% block footer %}
           <div class="pure-u-1">
             <p>This is the base template (please add a 'footer' block)</p>
