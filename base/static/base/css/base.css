@@ -230,3 +230,20 @@ html {
         page-break-after: avoid;
     }
 }
+
+
+<!--
+For the 'bxslider'.
+
+Moved from 'base/templates/base/_slider.html' so we don't have styles within
+the html body.
+-->
+.bxslider{
+    padding: 0;margin: 0;
+}
+
+ .bx-wrapper img{
+    max-width: auto;
+    width: 100%;
+    height: 100%;
+}
