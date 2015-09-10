@@ -117,14 +117,14 @@
         {% block content %}
           <p>This is the base template (please add a 'content' block)</p>
         {% endblock content %}
-        {% block footer %}
-          <div class="pure-g">
-            <div class="pure-u-1">
-              <p>This is the base template (please add a 'footer' block)</p>
-            </div>
-          </div>
-        {% endblock footer %}
       </div>
+      {% block footer %}
+        <div class="pure-g">
+          <div class="pure-u-1">
+            <p>This is the base template (please add a 'footer' block)</p>
+          </div>
+        </div>
+      {% endblock footer %}
     </div>
     {% compress js %}
       {% block script %}
