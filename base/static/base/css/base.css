@@ -232,12 +232,11 @@ html {
 }
 
 
-<!--
-For the 'bxslider'.
-
-Moved from 'base/templates/base/_slider.html' so we don't have styles within
-the html body.
--->
+/*
+ * For the 'bxslider'.
+ * Moved from 'base/templates/base/_slider.html' so we don't have styles within
+ * the html body.
+ */
 .bxslider{
     padding: 0;margin: 0;
 }
