@@ -102,10 +102,10 @@ setup(
             'templates/base/*.*',
         ],
     },
-    version='0.1.64',
+    version='0.1.65',
     description='Base',
-    author='Malcolm Dinsmore',
-    author_email='m.dinsmore@talk21.com',
+    author='Greg Bushell',
+    author_email='greg@kbsoftware.co.uk',
     url='git@github.com:pkimber/base.git',
     classifiers=[
         'Development Status :: 1 - Planning',
