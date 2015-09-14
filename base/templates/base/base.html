@@ -99,21 +99,17 @@
                 This is the base template (please add a 'sub_heading' block)
               {% endblock sub_heading %}
             </h2>
-          </div>
-        {% endblock header %}
-      </div>
-      <div class="content">
-        {% if messages %}
-          <div class="pure-g">
-            <div class="pure-u-1">
+            {% if messages %}
               <div class="message">
                 {% for message in messages %}
                   <p>{{ message }}</p>
                 {% endfor %}
               </div>
-            </div>
+            {% endif %}
           </div>
-        {% endif %}
+        {% endblock header %}
+      </div>
+      <div class="content">
         {% block content %}
           <p>This is the base template (please add a 'content' block)</p>
         {% endblock content %}
