@@ -57,8 +57,6 @@
                     Dashboard
                   </a>
                 </li>
-              {% endif %}
-              {% if user.is_staff %}
                 <li class="pure-menu-item{% if 'settings' in path %} pure-menu-selected{% endif %}">
                   <a href="{% url 'project.settings' %}" class="pure-menu-link">
                     <i class="fa fa-cog"></i>
@@ -72,16 +70,16 @@
                 <a class="pure-menu-link" href="{% url 'logout' %}">Logout</a>
               </li>
             {% else %}
-            <li class="pure-menu-item{% if 'login' in path %} pure-menu-selected{% endif %}">
-              <a class="pure-menu-link" href="{% url 'login' %}">Login</a>
-            </li>
+              <li class="pure-menu-item{% if 'login' in path %} pure-menu-selected{% endif %}">
+                <a class="pure-menu-link" href="{% url 'login' %}">Login</a>
+              </li>
             {% endif %}
           </ul>
         </div>
       </div>
       {% if testing %}
         <div class="testing">
-          <div class="pure-g-r">
+          <div class="pure-g">
             <div class="pure-u-1">
               Testing
             </div>
@@ -101,35 +99,28 @@
                 This is the base template (please add a 'sub_heading' block)
               {% endblock sub_heading %}
             </h2>
+            {% if messages %}
+              <div class="message">
+                {% for message in messages %}
+                  <p>{{ message }}</p>
+                {% endfor %}
+              </div>
+            {% endif %}
           </div>
         {% endblock header %}
       </div>
       <div class="content">
-        <div class="pure-g-r">
-          <div class="pure-u-1">
-            {% if messages %}
-              <div class="message">
-                <div class="pure-g-r">
-                  <div class="pure-u-1">
-                    {% for message in messages %}
-                      <p>{{ message }}</p>
-                    {% endfor %}
-                  </div>
-                </div>
-              </div>
-            {% endif %}
-            {% block content %}
-              <p>This is the base template (please add a 'content' block)</p>
-            {% endblock content %}
-            <br />
-          </div>
-        </div>
-        {% block footer %}
+        {% block content %}
+          <p>This is the base template (please add a 'content' block)</p>
+        {% endblock content %}
+      </div>
+      {% block footer %}
+        <div class="pure-g">
           <div class="pure-u-1">
             <p>This is the base template (please add a 'footer' block)</p>
           </div>
-        {% endblock footer %}
-      </div>
+        </div>
+      {% endblock footer %}
     </div>
     {% compress js %}
       {% block script %}

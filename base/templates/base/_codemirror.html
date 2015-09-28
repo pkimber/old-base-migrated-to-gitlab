@@ -1,0 +1,14 @@
+{% load staticfiles %}
+<script src="{% static 'vendor/js/codemirror/codemirror.js' %}" type="text/javascript"></script>
+<link rel="stylesheet" href="{% static 'vendor/css/codemirror/codemirror.css' %}">
+<link rel="stylesheet" href="{% static 'vendor/css/codemirror/solarized.css' %}">
+<script src="{% static 'vendor/js/codemirror/css.js' %}" type="text/javascript"></script>
+<script type="text/javascript">
+  var textArea = document.getElementById("id_code");
+  var editor = CodeMirror.fromTextArea(textArea, {
+      lineNumbers: true,
+      matchBrackets: true,
+      theme: "solarized light",
+      mode: "text/css"
+  });
+</script>

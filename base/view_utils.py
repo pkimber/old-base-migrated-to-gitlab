@@ -1,20 +1,17 @@
 # -*- encoding: utf-8 -*-
-from __future__ import unicode_literals
-
-from datetime import datetime
-
 from django.conf import settings
+from django.utils import timezone
 
 
 class BaseMixin(object):
 
     def get_context_data(self, **kwargs):
-        context = super(BaseMixin, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context.update(dict(
             path=get_path(self.request.path),
             request_path=self.request.path,
             testing=settings.TESTING,
-            today=datetime.today(),
+            today=timezone.now(),
         ))
         return context
 
