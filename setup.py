@@ -102,10 +102,10 @@ setup(
             'templates/base/*.*',
         ],
     },
-    version='0.1.68',
+    version='0.1.69',
     description='Base',
-    author='Patrick Kimber',
-    author_email='code@pkimber.net',
+    author='Greg Bushell',
+    author_email='greg@kbsoftware.co.uk',
     url='git@github.com:pkimber/base.git',
     classifiers=[
         'Development Status :: 1 - Planning',
