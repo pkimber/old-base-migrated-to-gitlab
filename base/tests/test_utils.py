@@ -5,6 +5,7 @@ from login.tests.factories import (
     TEST_PASSWORD,
     UserFactory,
 )
+from login.tests.fixture import setup_users
 from login.tests.scenario import (
     get_user_staff,
     get_user_web,
@@ -15,17 +16,7 @@ class PermTestCase(TestCase):
 
     def setup_users(self):
         """Using factories - set-up users for permissions test cases."""
-        UserFactory(
-            username='admin',
-            email='admin@pkimber.net',
-            is_staff=True,
-            is_superuser=True
-        )
-        UserFactory(username='staff', email='staff@pkimber.net', is_staff=True)
-        UserFactory(
-            username='web', email='web@pkimber.net',
-            first_name='William', last_name='Webber'
-        )
+        setup_users()
 
     def assert_anon(self, url):
         """only anonymous users should have access to this url"""
