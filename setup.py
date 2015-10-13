@@ -102,7 +102,7 @@ setup(
             'templates/base/*.*',
         ],
     },
-    version='0.1.69',
+    version='0.1.70',
     description='Base',
     author='Greg Bushell',
     author_email='greg@kbsoftware.co.uk',
