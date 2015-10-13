@@ -142,6 +142,7 @@ html {
     overflow-y: scroll;
 }
 
+[hidden][style="display: block;"] { display: block !important; }
 
 /**
  * Copied from html5-boilerplate:
