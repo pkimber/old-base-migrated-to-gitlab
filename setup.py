@@ -102,7 +102,7 @@ setup(
             'templates/base/*.*',
         ],
     },
-    version='0.1.71',
+    version='0.1.72',
     description='Base',
     author='Malcolm Dinsmore',
     author_email='m.dinsmore@talk21.com',
