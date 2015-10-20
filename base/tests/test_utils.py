@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import re
 from django.test import TestCase
 
 from login.tests.factories import (
@@ -124,3 +125,19 @@ class PermTestCase(TestCase):
 
     def login_web(self):
         return self._login_user(get_user_web())
+
+
+def assert_required_field(self, response):
+    assert response.status_code == 200
+
+    required_or_select = ('This field is required' in str(response.content)
+        or 'Select a valid choice' in str(response.content))
+
+    assert required_or_select
+
+def assert_redirect(response, regex):
+    assert response.status_code == 302
+    match = re.search(regex, response.get('Location'))
+    assert match != None
+    assert match.group(0) == regex
+
