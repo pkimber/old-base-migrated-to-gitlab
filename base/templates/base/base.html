@@ -13,6 +13,8 @@
         This is the base template (please add a 'sub_title' block)
       {% endblock sub_title %}
     </title>
+    {% block meta_extra %}
+    {% endblock meta_extra %}
     {% compress css %}
       {% block stylesheets %}
         <link rel="stylesheet" href="{% static 'vendor/css/pure/pure-min.0.6.0.css' %}">
