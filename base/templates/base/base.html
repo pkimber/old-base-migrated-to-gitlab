@@ -40,6 +40,8 @@
     <link rel="shortcut icon" href="{% static 'ico/favicon.ico' %}">
   </head>
   <body>
+    {% block tag %}
+    {% endblock tag %}
     <div id="layout">
       <!-- Menu toggle -->
       <a href="#menu" id="menuLink" class="menu-link">
