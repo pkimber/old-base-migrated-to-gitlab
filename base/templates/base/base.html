@@ -40,6 +40,8 @@
     <link rel="shortcut icon" href="{% static 'ico/favicon.ico' %}">
   </head>
   <body>
+    {% block analytics %}
+    {% endblock analytics %}
     {% block tag %}
     {% endblock tag %}
     <div id="layout">
@@ -158,7 +160,5 @@
     {% endcompress js %}
     {% block script_extra %}
     {% endblock script_extra %}
-    {% block analytics %}
-    {% endblock analytics %}
   </body>
 </html>
