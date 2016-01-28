@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import time
 from django.conf import settings
 from django.utils import timezone
 
@@ -22,3 +23,45 @@ def get_path(path):
     if result == '/':
         result = 'home'
     return result
+
+
+class DateSeriesBarChartMixin(object):
+    ''' Create a single series bar chart
+    In your template include the template snippet
+
+    {% include 'base/_date_series_bar_chart.html' %}
+
+    or a template derived from this one
+
+    in you get_context_data:
+        context = super().get_context_data(**kwargs)
+        context.update(
+            chartdata=self.get_chart_data(
+                container="<container name>",
+                legend="<series legend>",
+                raw_data=[{'x': <date 1>, 'y': value}, ...],
+                date_format="<date format e.g."%b %Y">
+            )
+        )
+        return context
+
+    the css for your container should include the following:
+    <id of container> {
+        width: <required width>px;
+        height: <required height>px;
+    }
+    '''
+
+    def get_chart_data(self, container, legend, raw_data, date_format):
+        data=[]
+        for key, value in raw_data:
+            data.append(
+                {'x': int(time.mktime(key.timetuple()) * 1000),'y': value}
+            )
+
+        return {
+            'container': container,
+            'legend': legend,
+            'data': data,
+            'date_format': date_format,
+        }
