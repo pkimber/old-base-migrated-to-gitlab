@@ -3,6 +3,7 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.db import models
 from django.db.models import AutoField
+from django.utils import timezone
 
 
 # We want attachments to be stored in a private location and NOT available to
@@ -64,6 +65,27 @@ class TimeStampedModel(models.Model):
     """
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+
+class TimedCreateModifyDeleteModel(TimeStampedModel):
+    """
+    An abstract base class model that provides self-updating
+    ``created`` and ``modified`` fields
+    """
+    deleted = models.BooleanField(default=False)
+    date_deleted = models.DateTimeField(blank=True, null=True)
+    user_deleted = models.ForeignKey(
+        settings.AUTH_USER_MODEL, blank=True, null=True
+    )
+
+    def set_deleted(self, user):
+        self.deleted = True
+        self.date_deleted = timezone.now()
+        self.user_deleted = user
+        self.save()
 
     class Meta:
         abstract = True
