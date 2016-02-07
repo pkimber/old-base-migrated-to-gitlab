@@ -2,15 +2,8 @@
 -e .
 -e ../login
 -e ../mail
-beautifulsoup4
-devpi-client
 factory-boy
-gitpython
-hgapi
-ipdb
 psycopg2
 pytest-django
 pytest-flakes
 pytest-pep8
-pyyaml
-walkdir

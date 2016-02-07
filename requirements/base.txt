@@ -3,5 +3,5 @@ celery==3.1.18
 django-braces==1.8.1
 django-compressor==1.5
 django-reversion==1.9.3
-Django==1.8.4
+Django==1.8.9
 pytz==2015.06
