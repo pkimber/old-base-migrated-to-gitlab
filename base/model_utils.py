@@ -78,7 +78,10 @@ class TimedCreateModifyDeleteModel(TimeStampedModel):
     deleted = models.BooleanField(default=False)
     date_deleted = models.DateTimeField(blank=True, null=True)
     user_deleted = models.ForeignKey(
-        settings.AUTH_USER_MODEL, blank=True, null=True
+        settings.AUTH_USER_MODEL,
+        blank=True,
+        null=True,
+        related_name='+',
     )
 
     def set_deleted(self, user):
