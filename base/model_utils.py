@@ -84,6 +84,16 @@ class TimedCreateModifyDeleteModel(TimeStampedModel):
         related_name='+',
     )
 
+    def undelete(self):
+        self.deleted = False
+        self.date_deleted = None
+        self.user_deleted = None
+        self.save()
+
+    @property
+    def is_deleted(self):
+        return self.deleted
+
     def set_deleted(self, user):
         self.deleted = True
         self.date_deleted = timezone.now()
