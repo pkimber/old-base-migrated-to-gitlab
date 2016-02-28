@@ -1,5 +1,7 @@
 <form action="." {% if form_id %}id="{{ form_id }}"{% endif %} method="{% if method %}{{ method }}{% else %}post{% endif %}" {% if multipart %}enctype="multipart/form-data"{% endif %} class="pure-form {% if aligned %}pure-form-aligned{% else %}pure-form-stacked{% endif %}">
-  {% csrf_token %}
+  {% if not no_token %}
+    {% csrf_token %}
+  {% endif %}
   {% if form.non_field_errors %}
     {{ form.non_field_errors }}
   {% endif %}
