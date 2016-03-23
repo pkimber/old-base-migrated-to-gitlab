@@ -97,6 +97,7 @@
           </div>
         </div>
       {% endif %}
+      {% block noheader %}
       <div>
         {% block header %}
           <div class="header">
@@ -120,6 +121,7 @@
           </div>
         {% endblock header %}
       </div>
+      {% endblock noheader %}
       <div class="content">
         {% block content %}
           <p>This is the base template (please add a 'content' block)</p>
