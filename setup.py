@@ -111,7 +111,7 @@ setup(
             'templates/base/*.*',
         ],
     },
-    version='0.1.85',
+    version='0.1.86',
     description='Base',
     author='Malcolm Dinsmore',
     author_email='zebyea@gmail.com',
