@@ -252,3 +252,14 @@ html {
     width: 100%;
     height: 100%;
 }
+
+#layout,
+#menu,
+.menu-link {
+    -webkit-transition: all 0.0s ease-out;
+    -moz-transition: all 0.0s ease-out;
+    -ms-transition: all 0.0s ease-out;
+    -o-transition: all 0.0s ease-out;
+    transition: all 0.0s ease-out;
+}
+
