@@ -256,10 +256,10 @@ html {
 #layout,
 #menu,
 .menu-link {
-    -webkit-transition: all 0.0s ease-out;
-    -moz-transition: all 0.0s ease-out;
-    -ms-transition: all 0.0s ease-out;
-    -o-transition: all 0.0s ease-out;
-    transition: all 0.0s ease-out;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
 }
 
