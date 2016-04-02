@@ -1,7 +1,7 @@
 {% if is_paginated %}
   {% if page_obj.has_previous %}
     <li class="pure-menu-item">
-      <a href="?page={{ page_obj.previous_page_number }}" class="pure-menu-link">
+      <a href="?page={{ page_obj.previous_page_number }}{% if url_param %}&{{ url_param }}{% endif %}" class="pure-menu-link">
         <i class="fa fa-backward"></i>
         Previous
       </a>
@@ -19,7 +19,7 @@
   </li>
   {% if page_obj.has_next %}
     <li class="pure-menu-item">
-      <a href="?page={{ page_obj.next_page_number }}" class="pure-menu-link">
+      <a href="?page={{ page_obj.next_page_number }}{% if url_param %}&{{ url_param }}{% endif %}" class="pure-menu-link">
         Next
         <i class="fa fa-forward"></i>
       </a>
