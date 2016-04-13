@@ -4,12 +4,22 @@ import pytest
 from django.utils import timezone
 
 from login.tests.factories import UserFactory
-from .factories import CakeFactory
+from .factories import LemonCakeFactory
+
+
+@pytest.mark.django_db
+def test_factory():
+    LemonCakeFactory()
+
+
+@pytest.mark.django_db
+def test_str():
+    str(LemonCakeFactory())
 
 
 @pytest.mark.django_db
 def test_set_deleted():
-    obj = CakeFactory()
+    obj = LemonCakeFactory()
     user = UserFactory()
     before = timezone.now()
     obj.set_deleted(user)
@@ -23,7 +33,7 @@ def test_set_deleted():
 
 @pytest.mark.django_db
 def test_undelete():
-    obj = CakeFactory()
+    obj = LemonCakeFactory()
     user = UserFactory()
     obj.set_deleted(user)
     obj.refresh_from_db()

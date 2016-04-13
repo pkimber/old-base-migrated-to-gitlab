@@ -2,7 +2,7 @@
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.db import models
-from django.db.models import AutoField
+from django.db.models import AutoField, Max
 from django.utils import timezone
 
 
@@ -20,6 +20,16 @@ ftp_file_store = FileSystemStorage(
     location=settings.FTP_STATIC_DIR,
     base_url=settings.FTP_STATIC_URL,
 )
+
+
+class BaseError(Exception):
+
+    def __init__(self, value):
+        Exception.__init__(self)
+        self.value = value
+
+    def __str__(self):
+        return repr('%s, %s' % (self.__class__.__name__, self.value))
 
 
 def _get_model_instance_data(obj):
@@ -99,6 +109,38 @@ class TimedCreateModifyDeleteModel(TimeStampedModel):
         self.date_deleted = timezone.now()
         self.user_deleted = user
         self.save()
+
+    class Meta:
+        abstract = True
+
+
+class TimedCreateModifyDeleteVersionModelManager(models.Manager):
+
+    def max_deleted_version(self, field_name, field_value):
+        kwargs = {field_name: field_value}
+        qs = self.model.objects.filter(**kwargs)
+        result = qs.aggregate(
+            max_id=Max('deleted_version')
+        )
+        return result.get('max_id') or 0
+
+
+class TimedCreateModifyDeleteVersionModel(TimedCreateModifyDeleteModel):
+
+    deleted_version = models.IntegerField(default=0)
+
+    def undelete(self):
+        self.deleted_version = 0
+        super().undelete()
+
+    def set_deleted(self, user, max_deleted_version=None):
+        if max_deleted_version is None:
+            raise BaseError(
+                "'TimedCreateModifyDeleteVersionModel' needs a "
+                "'max_deleted_version' to set the 'deleted_version'"
+            )
+        self.deleted_version = max_deleted_version + 1
+        super().set_deleted(user)
 
     class Meta:
         abstract = True
