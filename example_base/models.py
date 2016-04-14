@@ -10,6 +10,8 @@ from base.model_utils import (
 
 class FruitCake(TimedCreateModifyDeleteVersionModel):
 
+    UNIQUE_FIELD_NAME = 'number'
+
     description = models.CharField(max_length=100)
     number = models.IntegerField(default=0)
     quantity = models.IntegerField()

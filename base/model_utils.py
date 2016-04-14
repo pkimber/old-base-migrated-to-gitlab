@@ -116,13 +116,22 @@ class TimedCreateModifyDeleteModel(TimeStampedModel):
 
 class TimedCreateModifyDeleteVersionModelManager(models.Manager):
 
-    def max_deleted_version(self, field_name, field_value):
-        kwargs = {field_name: field_value}
+    def _unique_field_name(self):
+        return self.model.UNIQUE_FIELD_NAME
+
+    def _max_deleted_version(self, obj):
+        field_name = self._unique_field_name()
+        unique_value = getattr(obj, field_name)
+        kwargs = {field_name: unique_value}
         qs = self.model.objects.filter(**kwargs)
         result = qs.aggregate(
             max_id=Max('deleted_version')
         )
         return result.get('max_id') or 0
+
+    def set_deleted(self, obj, user):
+        max_deleted_version = self._max_deleted_version(obj)
+        obj.set_deleted(user, max_deleted_version)
 
 
 class TimedCreateModifyDeleteVersionModel(TimedCreateModifyDeleteModel):
@@ -137,7 +146,8 @@ class TimedCreateModifyDeleteVersionModel(TimedCreateModifyDeleteModel):
         if max_deleted_version is None:
             raise BaseError(
                 "'TimedCreateModifyDeleteVersionModel' needs a "
-                "'max_deleted_version' to set the 'deleted_version'"
+                "'max_deleted_version' to set the 'deleted_version'. "
+                "Use the 'set_deleted' method in the model manager."
             )
         self.deleted_version = max_deleted_version + 1
         super().set_deleted(user)
