@@ -96,8 +96,10 @@ class TimedCreateModifyDeleteModel(TimeStampedModel):
 
     def undelete(self):
         if not self.is_deleted:
+            class_name = self.__class__.__name__
             raise BaseError(
-                "Object '{}' is not deleted".format(self.pk)
+                "Cannot undelete '{}', pk '{}'.  It is not "
+                "deleted".format(self.__class__.__name__, self.pk)
             )
         self.deleted = False
         self.date_deleted = None
@@ -111,7 +113,8 @@ class TimedCreateModifyDeleteModel(TimeStampedModel):
     def set_deleted(self, user):
         if self.is_deleted:
             raise BaseError(
-                "Object '{}' is already deleted".format(self.pk)
+                "Cannot delete '{}', pk '{}'.  It is already "
+                "deleted".format(self.__class__.__name__, self.pk)
             )
         self.deleted = True
         self.date_deleted = timezone.now()
