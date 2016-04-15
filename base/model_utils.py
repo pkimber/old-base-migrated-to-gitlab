@@ -149,7 +149,30 @@ class TimedCreateModifyDeleteVersionModelManager(models.Manager):
 
 
 class TimedCreateModifyDeleteVersionModel(TimedCreateModifyDeleteModel):
-    """
+    """Keep track of deleted versions.
+
+    Written to solve the problem of re-using invoice numbers without having
+    to properly delete a row.
+
+    To use the class::
+
+      # 1. inherit from 'TimedCreateModifyDeleteVersionModel'
+      class Invoice(TimedCreateModifyDeleteVersionModel):
+
+          # 2. set the unique field name for the model e.g. invoice number
+          UNIQUE_FIELD_NAME = 'number'
+
+          # 3. identify your unique field e.g. invoice number
+          number = models.IntegerField(default=0)
+
+          class Meta:
+              # 4. create a unique index on the field and 'deleted_version'
+              unique_together = ('number', 'deleted_version')
+
+    Use the model manager to delete a row from the ``Invoice`` model::
+
+      invoice = InvoiceFactory()
+      Invoice.objects.set_deleted(obj, user)
 
     """
 
