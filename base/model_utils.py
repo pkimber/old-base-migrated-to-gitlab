@@ -2,7 +2,7 @@
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.db import models
-from django.db.models import AutoField
+from django.db.models import AutoField, Max
 from django.utils import timezone
 
 
@@ -20,6 +20,16 @@ ftp_file_store = FileSystemStorage(
     location=settings.FTP_STATIC_DIR,
     base_url=settings.FTP_STATIC_URL,
 )
+
+
+class BaseError(Exception):
+
+    def __init__(self, value):
+        Exception.__init__(self)
+        self.value = value
+
+    def __str__(self):
+        return repr('%s, %s' % (self.__class__.__name__, self.value))
 
 
 def _get_model_instance_data(obj):
@@ -85,6 +95,10 @@ class TimedCreateModifyDeleteModel(TimeStampedModel):
     )
 
     def undelete(self):
+        if not self.is_deleted:
+            raise BaseError(
+                "Object '{}' is not deleted".format(self.pk)
+            )
         self.deleted = False
         self.date_deleted = None
         self.user_deleted = None
@@ -95,10 +109,89 @@ class TimedCreateModifyDeleteModel(TimeStampedModel):
         return self.deleted
 
     def set_deleted(self, user):
+        if self.is_deleted:
+            raise BaseError(
+                "Object '{}' is already deleted".format(self.pk)
+            )
         self.deleted = True
         self.date_deleted = timezone.now()
         self.user_deleted = user
         self.save()
+
+    class Meta:
+        abstract = True
+
+
+class TimedCreateModifyDeleteVersionModelManager(models.Manager):
+
+    def _unique_field_name(self):
+        try:
+            return self.model.UNIQUE_FIELD_NAME
+        except AttributeError:
+            raise BaseError(
+                "'TimedCreateModifyDeleteVersionModel' needs a "
+                "'UNIQUE_FIELD_NAME' to find the 'deleted_version'. "
+            )
+
+    def _max_deleted_version(self, obj):
+        field_name = self._unique_field_name()
+        unique_value = getattr(obj, field_name)
+        kwargs = {field_name: unique_value}
+        qs = self.model.objects.filter(**kwargs)
+        result = qs.aggregate(
+            max_id=Max('deleted_version')
+        )
+        return result.get('max_id') or 0
+
+    def set_deleted(self, obj, user):
+        max_deleted_version = self._max_deleted_version(obj)
+        obj.set_deleted(user, max_deleted_version)
+
+
+class TimedCreateModifyDeleteVersionModel(TimedCreateModifyDeleteModel):
+    """Keep track of deleted versions.
+
+    Written to solve the problem of re-using invoice numbers without having
+    to properly delete a row.
+
+    To use the class::
+
+      # 1. inherit from 'TimedCreateModifyDeleteVersionModel'
+      class Invoice(TimedCreateModifyDeleteVersionModel):
+
+          # 2. set the unique field name for the model e.g. invoice number
+          UNIQUE_FIELD_NAME = 'number'
+
+          # 3. create your unique field e.g. invoice number
+          number = models.IntegerField(default=0)
+
+          class Meta:
+              # 4. create a unique index on the field and 'deleted_version'
+              unique_together = ('number', 'deleted_version')
+
+    Use the model manager to delete a row from the ``Invoice`` model::
+
+      invoice = InvoiceFactory()
+      Invoice.objects.set_deleted(obj, user)
+
+    """
+
+    deleted_version = models.IntegerField(default=0)
+
+    def undelete(self):
+        self.deleted_version = 0
+        super().undelete()
+
+    def set_deleted(self, user, max_deleted_version=None):
+        if max_deleted_version is None:
+            raise BaseError(
+                "'TimedCreateModifyDeleteVersionModel' needs a "
+                "'max_deleted_version' to set the 'deleted_version'. "
+                "Use the 'set_deleted' method in the model manager for "
+                "a model with deleted version tracking."
+            )
+        self.deleted_version = max_deleted_version + 1
+        super().set_deleted(user)
 
     class Meta:
         abstract = True
