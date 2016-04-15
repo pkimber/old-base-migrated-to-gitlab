@@ -162,7 +162,7 @@ class TimedCreateModifyDeleteVersionModel(TimedCreateModifyDeleteModel):
           # 2. set the unique field name for the model e.g. invoice number
           UNIQUE_FIELD_NAME = 'number'
 
-          # 3. identify your unique field e.g. invoice number
+          # 3. create your unique field e.g. invoice number
           number = models.IntegerField(default=0)
 
           class Meta:
