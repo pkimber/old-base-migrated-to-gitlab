@@ -2,10 +2,7 @@
 import re
 from django.test import TestCase
 
-from login.tests.factories import (
-    TEST_PASSWORD,
-    UserFactory,
-)
+from login.tests.factories import TEST_PASSWORD
 from login.tests.fixture import setup_users
 from login.tests.scenario import (
     get_user_staff,

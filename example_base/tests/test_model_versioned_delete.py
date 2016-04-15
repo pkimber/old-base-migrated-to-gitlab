@@ -39,7 +39,7 @@ def test_set_deleted_multi():
     FruitCake.objects.set_deleted(c1, user)
     c2 = FruitCakeFactory(number=19, description='c2')
     FruitCake.objects.set_deleted(c2, user)
-    c3 = FruitCakeFactory(number=19, description='c3')
+    FruitCakeFactory(number=19, description='c3')
     result = FruitCake.objects.filter(number=19).order_by('description')
     assert 3 == result.count()
     assert [
