@@ -3,6 +3,7 @@ import pytest
 
 from django.utils import timezone
 
+from base.model_utils import BaseError
 from login.tests.factories import UserFactory
 from .factories import LemonCakeFactory
 
@@ -32,6 +33,17 @@ def test_set_deleted():
 
 
 @pytest.mark.django_db
+def test_set_deleted_already_deleted():
+    obj = LemonCakeFactory()
+    user = UserFactory()
+    obj.set_deleted(user)
+    obj.refresh_from_db()
+    with pytest.raises(BaseError) as e:
+        obj.set_deleted(user)
+    assert 'is already deleted' in str(e.value)
+
+
+@pytest.mark.django_db
 def test_undelete():
     obj = LemonCakeFactory()
     user = UserFactory()
@@ -42,3 +54,11 @@ def test_undelete():
     assert obj.deleted is False
     assert obj.user_deleted is None
     assert obj.date_deleted is None
+
+
+@pytest.mark.django_db
+def test_undelete_not_deleted():
+    obj = LemonCakeFactory()
+    with pytest.raises(BaseError) as e:
+        obj.undelete()
+    assert 'is not deleted' in str(e.value)
