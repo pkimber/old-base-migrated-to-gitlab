@@ -24,11 +24,6 @@ def test_set_deleted():
     assert 0 == obj.deleted_version
     user = UserFactory()
     FruitCake.objects.set_deleted(obj, user)
-    # max_deleted_version = FruitCake.objects.max_deleted_version(
-    #     'number',
-    #     obj.number,
-    # )
-    # obj.set_deleted(user, max_deleted_version)
     obj.refresh_from_db()
     assert obj.deleted is True
     assert obj.user_deleted == user
@@ -40,11 +35,6 @@ def test_set_deleted():
 def test_undelete():
     obj = FruitCakeFactory()
     user = UserFactory()
-    # max_deleted_version = FruitCake.objects.max_deleted_version(
-    #     'number',
-    #     obj.number,
-    # )
-    # obj.set_deleted(user, max_deleted_version)
     FruitCake.objects.set_deleted(obj, user)
     assert obj.deleted_version > 0
     obj.refresh_from_db()

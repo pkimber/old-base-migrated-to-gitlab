@@ -95,6 +95,10 @@ class TimedCreateModifyDeleteModel(TimeStampedModel):
     )
 
     def undelete(self):
+        if not self.is_deleted:
+            raise BaseError(
+                "Object '{}' is not deleted".format(self.pk)
+            )
         self.deleted = False
         self.date_deleted = None
         self.user_deleted = None
@@ -105,6 +109,10 @@ class TimedCreateModifyDeleteModel(TimeStampedModel):
         return self.deleted
 
     def set_deleted(self, user):
+        if self.is_deleted:
+            raise BaseError(
+                "Object '{}' is already deleted".format(self.pk)
+            )
         self.deleted = True
         self.date_deleted = timezone.now()
         self.user_deleted = user
@@ -117,7 +125,13 @@ class TimedCreateModifyDeleteModel(TimeStampedModel):
 class TimedCreateModifyDeleteVersionModelManager(models.Manager):
 
     def _unique_field_name(self):
-        return self.model.UNIQUE_FIELD_NAME
+        try:
+            return self.model.UNIQUE_FIELD_NAME
+        except AttributeError:
+            raise BaseError(
+                "'TimedCreateModifyDeleteVersionModel' needs a "
+                "'UNIQUE_FIELD_NAME' to find the 'deleted_version'. "
+            )
 
     def _max_deleted_version(self, obj):
         field_name = self._unique_field_name()
@@ -135,6 +149,9 @@ class TimedCreateModifyDeleteVersionModelManager(models.Manager):
 
 
 class TimedCreateModifyDeleteVersionModel(TimedCreateModifyDeleteModel):
+    """
+
+    """
 
     deleted_version = models.IntegerField(default=0)
 
@@ -147,7 +164,8 @@ class TimedCreateModifyDeleteVersionModel(TimedCreateModifyDeleteModel):
             raise BaseError(
                 "'TimedCreateModifyDeleteVersionModel' needs a "
                 "'max_deleted_version' to set the 'deleted_version'. "
-                "Use the 'set_deleted' method in the model manager."
+                "Use the 'set_deleted' method in the model manager for "
+                "a model with deleted version tracking."
             )
         self.deleted_version = max_deleted_version + 1
         super().set_deleted(user)
