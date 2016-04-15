@@ -33,6 +33,23 @@ def test_set_deleted():
 
 
 @pytest.mark.django_db
+def test_set_deleted_multi():
+    user = UserFactory()
+    c1 = FruitCakeFactory(number=19, description='c1')
+    FruitCake.objects.set_deleted(c1, user)
+    c2 = FruitCakeFactory(number=19, description='c2')
+    FruitCake.objects.set_deleted(c2, user)
+    c3 = FruitCakeFactory(number=19, description='c3')
+    result = FruitCake.objects.filter(number=19).order_by('description')
+    assert 3 == result.count()
+    assert [
+        (19, True, 1),
+        (19, True, 2),
+        (19, False, 0),
+    ] == [(o.number, o.deleted, o.deleted_version) for o in result]
+
+
+@pytest.mark.django_db
 def test_set_deleted_model():
     """Standard way to delete rows from non-versioned delete models"""
     obj = FruitCakeFactory()
