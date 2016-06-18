@@ -11,9 +11,8 @@ Virtual Environment
 
 ::
 
-  virtualenv --python=python3.4 venv-base
+  virtualenv --python=python3 venv-base
   source venv-base/bin/activate
-  pip install --upgrade pip
 
   pip install -r requirements/local.txt
 
@@ -39,4 +38,4 @@ Usage
 Release
 =======
 
-https://www.pkimber.net/open/
+https://www.kbsoftware.co.uk/docs/
