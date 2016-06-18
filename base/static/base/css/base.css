@@ -25,6 +25,10 @@ a:visited {
     color: #265778; /* block-normal-text-normal */
 }
 
+.errorlist {
+    background: rgb(255, 255, 184);
+}
+
 .header {
     text-align: center;
     padding: 0;
