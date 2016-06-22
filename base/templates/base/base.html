@@ -114,9 +114,11 @@
               {% endblock sub_heading %}
             </h2>
             {% if messages %}
-              <div class="message">
+              <div>
                 {% for message in messages %}
-                  <p>{{ message }}</p>
+                  <p class="message-{{ message.tags }}">
+                    {{ message }}
+                  </p>
                 {% endfor %}
               </div>
             {% endif %}
