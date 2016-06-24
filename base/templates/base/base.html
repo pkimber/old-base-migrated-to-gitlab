@@ -52,7 +52,8 @@
       </a>
       <div id="menu">
         <div class="pure-menu">
-          <a class="pure-menu-heading" href="{% url 'project.home' %}">Home</a>
+          {% block homelink %}<a class="pure-menu-heading" href="{% url 'project.home' %}">Home</a>{% endblock homelink %}
+
           <ul class="pure-menu-list">
             {% block menu %}
               {% block menu_dash %}
