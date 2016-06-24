@@ -103,7 +103,13 @@ a:visited {
     padding: 0.0em 6px 0.0em 0.0em;
 }
 
-.message {
+.message-error, .message-warning {
+    text-align: center;
+    padding: 0;
+    background: rgb(255, 240, 240);
+}
+
+.message-info, .message-success {
     text-align: center;
     padding: 0;
     background: rgb(224, 255, 184);
