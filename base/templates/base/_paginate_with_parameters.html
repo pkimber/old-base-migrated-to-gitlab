@@ -1,0 +1,35 @@
+{% if is_paginated %}
+  {% if page_obj.has_previous %}
+    <li class="pure-menu-item">
+      <a href="?{{ get_parameters }}&{% if page_kwarg %}{{ page_kwarg }}{% else %}page{% endif %}={{ page_obj.previous_page_number }}{% if url_param %}&{{ url_param }}{% endif %}" class="pure-menu-link">
+        <i class="fa fa-backward"></i>
+        Previous
+      </a>
+    </li>
+  {% else %}
+    <li class="pure-menu-item pure-menu-disabled">
+      <a href="#" class="pure-menu-link">
+        <i class="fa fa-backward"></i>
+        Previous
+      </a>
+    </li>
+  {% endif %}
+  <li class="pure-menu-item">
+    <small>{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</small>
+  </li>
+  {% if page_obj.has_next %}
+    <li class="pure-menu-item">
+      <a href="?{{ get_parameters }}&{% if page_kwarg %}{{ page_kwarg }}{% else %}page{% endif %}={{ page_obj.next_page_number }}{% if url_param %}&{{ url_param }}{% endif %}" class="pure-menu-link">
+        Next
+        <i class="fa fa-forward"></i>
+      </a>
+    </li>
+  {% else %}
+    <li class="pure-menu-item pure-menu-disabled">
+      <a href="#" class="pure-menu-link">
+        Next
+        <i class="fa fa-forward"></i>
+      </a>
+    </li>
+  {% endif %}
+{% endif %}
