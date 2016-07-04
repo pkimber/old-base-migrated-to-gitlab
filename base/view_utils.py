@@ -1,6 +1,8 @@
 # -*- encoding: utf-8 -*-
 import time
+
 from django.conf import settings
+from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.utils import timezone
 
 
@@ -65,3 +67,24 @@ class DateSeriesBarChartMixin(object):
             'data': data,
             'date_format': date_format,
         }
+
+
+class RedirectNextMixin:
+    """Handle the 'next' parameter on a URL.
+
+    For details, see
+    https://www.kbsoftware.co.uk/docs/dev-django.html#next
+
+    """
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        next_url = self.request.GET.get(REDIRECT_FIELD_NAME)
+        if not next_url:
+            if self.request.method == 'POST':
+                next_url = self.request.POST.get('next')
+        if next_url:
+            context.update({
+                REDIRECT_FIELD_NAME: next_url,
+            })
+        return context
