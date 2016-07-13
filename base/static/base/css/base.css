@@ -106,7 +106,8 @@ a:visited {
 .message-error, .message-warning {
     text-align: center;
     padding: 0;
-    background: rgb(255, 240, 240);
+    background: rgb(255, 0, 0);
+    color: white;
 }
 
 .message-info, .message-success {
