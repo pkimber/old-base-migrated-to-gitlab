@@ -40,4 +40,6 @@ class Command(BaseCommand):
                 # model is not registered with reversion ignore
                 pass
         self.stdout.write("")
-        self.stdout.write(print_pattern.format("Total Records", "", total_count))
+        self.stdout.write(print_pattern.format(
+            "Total Records", "", total_count
+        ))
