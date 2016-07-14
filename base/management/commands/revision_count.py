@@ -15,6 +15,9 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         total_count = 0
         print_pattern = "{:<15} {:<30s} {:>10d}"
+        title_pattern = "{:<15} {:<30s} {:>10s}"
+        self.stdout.write(title_pattern.format("App", "Model", "Revisions"))
+        self.stdout.write(title_pattern.format("===", "=====", "========="))
         prev_app = None
         for model in sorted(
                 apps.get_models(),
@@ -27,8 +30,8 @@ class Command(BaseCommand):
                 count = qs.count()
                 total_count += count
                 if prev_app and prev_app != app_name:
-                    print()
-                print (print_pattern.format(
+                    self.stdout.write("")
+                self.stdout.write(print_pattern.format(
                     app_name if prev_app != app_name else "",
                     model_name, count
                 ))
@@ -36,5 +39,5 @@ class Command(BaseCommand):
             except RegistrationError:
                 # model is not registered with reversion ignore
                 pass
-        print ()
-        print (print_pattern.format("Total Records", "", total_count))
+        self.stdout.write("")
+        self.stdout.write(print_pattern.format("Total Records", "", total_count))
