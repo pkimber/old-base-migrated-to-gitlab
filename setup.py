@@ -20,7 +20,7 @@ def get_readme():
 
 setup(
     name='kb-base',
-    packages=['base', 'base.templatetags', 'base.tests'],
+    packages=['base', 'base.management.commands', 'base.tests', 'base.templatetags'],
     package_data={
         'base': [
             'static/*.*',
@@ -111,10 +111,10 @@ setup(
             'templates/base/*.*',
         ],
     },
-    version='0.1.90',
+    version='0.1.91',
     description='Base',
-    author='Patrick Kimber',
-    author_email='code@pkimber.net',
+    author='Malcolm Dinsmore',
+    author_email='zebyea@gmail.com',
     url='git@github.com:pkimber/base.git',
     classifiers=[
         'Development Status :: 1 - Planning',
