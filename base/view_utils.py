@@ -73,7 +73,7 @@ class RedirectNextMixin:
     """Handle the 'next' parameter on a URL.
 
     For details, see
-    https://www.kbsoftware.co.uk/docs/dev-django.html#next
+    https://www.kbsoftware.co.uk/docs/app-base.html#redirectnextmixin
 
     """
 
