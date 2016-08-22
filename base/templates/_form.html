@@ -10,25 +10,26 @@
       <legend>{{ legend }}</legend>
     {% endif %}
     {% for field in form.visible_fields %}
-      <div class="pure-control-group">
-        {% if field.label %}
-          <strong>
-            <label for='{{ field.id_for_label }}'>{{ field.label }}{% if field.help_text %} - {{ field.help_text }}{% endif %}:</label>
-          </strong>
+      {% include '_form_field.html' with field=field %}
+    {% endfor %}
+    {% if formset %}
+      {{ formset.management_form }}
+    {% endif %}
+    {% for formset_form in formset %}
+      <legend>
+        {{ formset_legend }}
+        {% if formset_add %}
+          {{ forloop.counter|add:formset_add }}:
+        {% else %}
+          {{ forloop.counter }}:
         {% endif %}
-        {% if aligned %}
-          {{ field }}
-        {% endif %}
-        {% for error in field.errors %}
-          <span class="errorlist"><mark>{{ error }}</mark></span>
-          {% if not aligned %}
-            <br>
-          {% endif %}
+      </legend>
+        {% for field in formset_form.visible_fields %}
+        {% include '_form_field.html' with field=field %}
         {% endfor %}
-        {% if not aligned %}
-          {{ field }}
-        {% endif %}
-      </div>
+      {% for hidden in formset_form.hidden_fields %}
+      {{ hidden }}
+      {% endfor %}
     {% endfor %}
     <div class="pure-controls">
       <p>
