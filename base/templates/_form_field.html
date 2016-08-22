@@ -1,0 +1,19 @@
+<div class="pure-control-group">
+  {% if field.label %}
+    <strong>
+      <label for='{{ field.id_for_label }}'>{{ field.label }}{% if field.help_text %} - {{ field.help_text }}{% endif %}:</label>
+    </strong>
+  {% endif %}
+  {% if aligned %}
+    {{ field }}
+  {% endif %}
+  {% for error in field.errors %}
+    <span class="errorlist"><mark>{{ error }}</mark></span>
+    {% if not aligned %}
+      <br>
+    {% endif %}
+  {% endfor %}
+  {% if not aligned %}
+    {{ field }}
+  {% endif %}
+</div>
