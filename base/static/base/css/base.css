@@ -72,6 +72,11 @@ a:visited {
         text-align: center;
     }
 
+.kb-hide-bullet ul {
+    list-style-type: none;
+    padding: 0;
+}
+
 /*
  * Apply the .box class on the immediate parent of any grid element (pure-u-*)
  * to apply some padding.
