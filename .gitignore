@@ -40,6 +40,8 @@ venv-*
 
 # dev
 .cache/
+logfile
+logfile.*
 
 # private info
 .private
