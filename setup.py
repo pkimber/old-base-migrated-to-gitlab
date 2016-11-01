@@ -111,7 +111,7 @@ setup(
             'templates/base/*.*',
         ],
     },
-    version='0.1.94',
+    version='0.1.95',
     description='Base',
     author='Patrick Kimber',
     author_email='code@pkimber.net',
