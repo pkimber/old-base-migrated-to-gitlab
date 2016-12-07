@@ -47,7 +47,7 @@ $(function () {
       var filePath = inputFile.val();
       if (filePath) {
         var fileName = filePath.replace(/^.*[\\\/]/, '');
-        $("#filedrop-file-name").text("Upload '" + fileName + "'");
+        $("#filedrop-file-name").text(fileName);
       }
       else {
         $("#filedrop-file-name").text("Drop a file...");
