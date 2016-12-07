@@ -1,0 +1,27 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+
+{% block menu %}
+  <li class="pure-menu-item{% if path == '/dash/filedrop/' %} pure-menu-selected{% endif %}">
+    <a class="pure-menu-link" href="{% url 'filedrop.demo' %}">
+      <i class="fa fa-file-o"></i>
+      File Drop Demo
+    </a>
+  </li>
+  {{ block.super }}
+{% endblock menu %}
+
+{% block title %}
+  Base
+{% endblock title %}
+
+{% block heading %}
+  Base
+{% endblock heading %}
+
+{% block sub_heading %}
+  Example App
+{% endblock sub_heading %}
+
+{% block footer %}
+{% endblock footer %}
