@@ -1,0 +1,44 @@
+#filedrop-zone {
+    height: 100px;
+    border: 2px dashed rgba(0,0,255,.3);
+    border-radius: 20px;
+    font-family: Arial;
+    text-align: center;
+    position: relative;
+    line-height: 60px;
+    font-size: 20px;
+    color: rgba(0,0,0,.3);
+}
+
+#filedrop-zone input {
+    position: absolute;
+    cursor: pointer;
+    left: 0px;
+    top: 0px;
+    opacity:0;
+}
+
+#filedrop-zone.mouse-over {
+    border: 2px solid rgba(0,0,0,.5);
+    color: rgba(0,0,0,.5);
+}
+
+#filedrop-click-here {
+    position: absolute;
+    cursor: pointer;
+    left: 50%;
+    top: 35%;
+    margin-left: -50px;
+    margin-top: 20px;
+    line-height: 26px;
+    color: white;
+    font-size: 12px;
+    width: 100px;
+    height: 26px;
+    border-radius: 4px;
+    background-color: #3b85c3;
+}
+
+#filedrop-click-here:hover {
+    background-color: #4499DD;
+}

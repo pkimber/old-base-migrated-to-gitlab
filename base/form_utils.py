@@ -6,6 +6,10 @@ from bleach import (
 )
 
 from django import forms
+from django.forms.utils import flatatt
+from django.forms.widgets import FileInput
+from django.utils.encoding import force_text
+from django.utils.safestring import mark_safe
 
 
 def bleach_clean(data):
@@ -56,6 +60,33 @@ def set_widget_required(field):
     field.required = True
 
 
+class FileDropInput(FileInput):
+
+    def render(self, name, value, attrs=None):
+        filedrop_class = ''
+        if value is None:
+            value = ''
+        final_attrs = self.build_attrs(attrs, type=self.input_type, name=name)
+        if final_attrs:
+            fd_class = final_attrs.get('class', None)
+            if fd_class:
+                filedrop_class = "class={}".format(fd_class)
+                del final_attrs['class']
+            if value != '':
+                # Only add the 'value' attribute if a value is non-empty.
+                final_attrs['value'] = force_text(self.format_value(value))
+
+        return mark_safe((
+            '<div id="filedrop-zone" {}>'
+            '<span id="filedrop-file-name">Drop a file...</span>'
+            '<div id="filedrop-click-here">'
+            'or click here..'
+            '<input {}>'
+            '</div>'
+            '</div>'
+        ).format(filedrop_class, flatatt(final_attrs)))
+
+
 class RequiredFieldForm(forms.ModelForm):
     """Add the 'required' attribute"""
 
@@ -69,3 +100,6 @@ class RequiredFieldForm(forms.ModelForm):
                 f.widget.attrs.update({
                     'class': 'datepicker',
                 })
+            if (isinstance(f, forms.FileField) or
+                    isinstance(f, forms.ImageField)):
+                f.widget = FileDropInput()

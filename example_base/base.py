@@ -3,13 +3,10 @@
 from django.core.urlresolvers import reverse_lazy
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 TESTING = False
 
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
-
-TEMPLATE_STRING_IF_INVALID = '**** INVALID EXPRESSION: %s ****'
 
 ADMINS = (
     ('admin', 'code@pkimber.net'),
@@ -43,12 +40,12 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = 'media'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -72,7 +69,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    #'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -94,12 +91,25 @@ ROOT_URLCONF = 'example_base.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'example_base.wsgi.application'
 
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates"
-    # or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+            ],
+            'string_if_invalid': '**** INVALID EXPRESSION: %s ****',
+        },
+    },
+]
 
 DJANGO_APPS = (
     'django.contrib.auth',
@@ -156,7 +166,7 @@ LOGGING = {
 }
 
 # User Profile.
-AUTH_PROFILE_MODULE = 'example_base.UserProfile'
+# AUTH_PROFILE_MODULE = 'example_base.UserProfile'
 
 # URL where requests are redirected after login when the contrib.auth.login
 # view gets no next parameter.
@@ -165,7 +175,7 @@ LOGIN_REDIRECT_URL = reverse_lazy('project.home')
 # Login URL. Used with login_required decorators when a user
 # must be logged in before accessing the view otherwise this URL
 # will be called.
-LOGIN_URL = reverse_lazy('login.login')
+LOGIN_URL = reverse_lazy('login')
 
 # Login URL. Used with login_required decorators when a user
 # must be logged in before accessing the view otherwise this URL

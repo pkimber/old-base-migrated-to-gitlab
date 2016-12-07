@@ -1,0 +1,30 @@
+{% extends 'dash/base.html' %}
+
+{% load staticfiles %}
+
+{% block sub_title %}
+  Dashboard - filedrop demo
+{% endblock sub_title %}
+
+{% block sub_heading %}
+  Dashboard - filedrop demo
+{% endblock sub_heading %}
+
+
+{% block stylesheets_extra %}
+<link rel="stylesheet" type="text/css" href="{% static 'vendor/css/filedrop/filedrop.css' %}">
+{% endblock stylesheets_extra %}
+
+{% block content %}
+<div id="drop-zone">
+    <span id="droppedFileName">Drop a file...</span>
+    <div id="clickHere">
+        or click here..
+        <input type="file" name="file" id="file" />
+    </div>
+</div>
+{% endblock content %}
+{% block script_extra %}
+<script src="{% static 'vendor/js/filedrop/filedrop.js' %}"></script>
+{% endblock script_extra %}
+

@@ -1,0 +1,68 @@
+{% extends 'dash/base.html' %}
+
+{% load staticfiles %}
+
+{% block sub_title %}
+  Dashboard - dropzone file upload
+{% endblock sub_title %}
+
+{% block sub_heading %}
+  Dashboard - dropzone file upload
+{% endblock sub_heading %}
+
+{% block stylesheets_extra %}
+  <link rel="stylesheet" href="{% static 'dropzone/dropzone.css' %}" type="text/css">
+{% endblock stylesheets_extra %}
+
+{% block script_extra %}
+  <script src="{% static 'dropzone/dropzone.js' %}"></script>
+  <script>
+    Dropzone.options.myAwesomeDropzone = {
+      paramName: "file", // The name that will be used to transfer the file
+      maxFilesize: 2, // MB
+      accept: function(file, done) {
+        if (file.name == "justinbieber.jpg") {
+          done("Naha, you don't.");
+        }
+        else { done(); }
+      }
+    };
+  </script>
+  <style>
+    .dropzone-600px-centered{
+      width: 600px; margin: 10px auto;
+    }
+    #file-upload {
+      border: 2px blue dashed;
+      background-color: #f0f0f0;
+    }
+  </style>
+{% endblock script_extra %}
+
+{% block content %}
+  <div class="pure-g">
+    <div class="pure-u-1">
+      <div class="pure-menu pure-menu-horizontal">
+        <ul class="pure-menu-list">
+            <!-- menu includes do here -->
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3>A demo of how it use dropzone</h3>
+  <div class="dropzone-600px-centered">
+    <form id="file-upload" action="{% url 'ajax.file.upload' %}" class="dropzone needsclick dz-clickable">
+      {% csrf_token %}
+      <div class="dz-message needsclick">
+        Drop files here or click to upload.<br>
+      </div>
+    </form>
+    <div>
+      <h4>Previously Uploaded</h4>
+      {% for document in document_list %}
+      <p>{{document.id}} {{ document.filename }}</p>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock content %}
