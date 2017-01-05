@@ -1,4 +1,4 @@
-<form action="." {% if form_id %}id="{{ form_id }}"{% endif %} method="{% if method %}{{ method }}{% else %}post{% endif %}" {% if multipart %}enctype="multipart/form-data"{% endif %} class="pure-form {% if aligned %}pure-form-aligned{% else %}pure-form-stacked{% endif %}{% if form_class %} {{ form_class }}{% endif %}">
+<form action="{% if action %}{{ action }}{% else %}.{% endif %}" {% if form_id %}id="{{ form_id }}"{% endif %} method="{% if method %}{{ method }}{% else %}post{% endif %}" {% if multipart %}enctype="multipart/form-data"{% endif %} class="pure-form {% if aligned %}pure-form-aligned{% else %}pure-form-stacked{% endif %}{% if form_class %} {{ form_class }}{% endif %}">
   {% if not no_token %}
     {% csrf_token %}
   {% endif %}
