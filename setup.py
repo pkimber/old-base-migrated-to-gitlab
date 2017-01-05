@@ -113,10 +113,10 @@ setup(
             'templates/base/*.*',
         ],
     },
-    version='0.2.01',
+    version='0.2.02',
     description='Base',
-    author='Patrick Kimber',
-    author_email='code@pkimber.net',
+    author='Malcolm Dinsmore',
+    author_email='zebyea@gmail.com',
     url='git@github.com:pkimber/base.git',
     classifiers=[
         'Development Status :: 1 - Planning',
