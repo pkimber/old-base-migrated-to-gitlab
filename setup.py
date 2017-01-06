@@ -113,7 +113,7 @@ setup(
             'templates/base/*.*',
         ],
     },
-    version='0.2.02',
+    version='0.2.03',
     description='Base',
     author='Malcolm Dinsmore',
     author_email='zebyea@gmail.com',
