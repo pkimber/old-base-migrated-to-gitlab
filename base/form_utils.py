@@ -62,6 +62,11 @@ def set_widget_required(field):
 
 class FileDropInput(FileInput):
 
+    def __init__(self, **kwargs):
+        self.default_text = kwargs.pop('default_text', "Drop a file...")
+        self.click_text = kwargs.pop('click_text', "or click here...")
+        super().__init__(**kwargs)
+
     def render(self, name, value, attrs=None):
         filedrop_class = ''
         if value is None:
@@ -70,21 +75,25 @@ class FileDropInput(FileInput):
         if final_attrs:
             fd_class = final_attrs.get('class', None)
             if fd_class:
-                filedrop_class = "class={}".format(fd_class)
+                filedrop_class = "class=\"{}\"".format(fd_class)
                 del final_attrs['class']
+
+            final_attrs['data-default-text'] = force_text(self.default_text)
             if value != '':
                 # Only add the 'value' attribute if a value is non-empty.
                 final_attrs['value'] = force_text(self.format_value(value))
-
         return mark_safe((
             '<div id="filedrop-zone" {}>'
-            '<span id="filedrop-file-name">Drop a file...</span>'
+            '<span id="filedrop-file-name">{}</span>'
             '<div id="filedrop-click-here">'
-            'or click here..'
+            '{}'
             '<input {}>'
             '</div>'
             '</div>'
-        ).format(filedrop_class, flatatt(final_attrs)))
+        ).format(
+            filedrop_class, self.default_text, self.click_text,
+            flatatt(final_attrs)
+        ))
 
 
 class RequiredFieldForm(forms.ModelForm):
