@@ -1,0 +1,45 @@
+<style>
+  .field-two-thirds { display: inline-block; width: 66%; }
+</style>
+<form action="." {% if form_id %}id="{{ form_id }}"{% endif %} method="{% if method %}{{ method }}{% else %}post{% endif %}" {% if multipart %}enctype="multipart/form-data"{% endif %} class="pure-form {% if aligned %}pure-form-aligned{% else %}pure-form-stacked{% endif %}">
+  {% csrf_token %}
+  {% if warning %}
+    <strong>
+      {{ warning }}
+    </strong>
+  {% endif %}
+  {% if form.non_field_errors %}
+    {{ form.non_field_errors }}
+  {% endif %}
+  <fieldset>
+    {% if legend %}
+      <legend>{{ legend }}</legend>
+    {% endif %}
+    {% for field in form.visible_fields %}
+      {% include 'event/_form_field.html' with field=field %}
+    {% endfor %}
+    {% if formset %}
+      {{ formset.management_form }}
+    {% endif %}
+    {% for formset_form in formset %}
+    <legend>{{ formset_legend }} {% if formset_add %}{{ forloop.counter|add:formset_add }}{% else %}{{ forloop.counter|add:formset_add }}{% endif %}:</legend>
+        {% for field in formset_form.visible_fields %}
+        {% include 'event/_form_field.html' with field=field %}
+        {% endfor %}
+      {% for hidden in formset_form.hidden_fields %}
+      {{ hidden }}
+      {% endfor %}
+    {% endfor %}
+    <div class="pure-controls">
+      <p>
+        <input type="submit" {% if submit_id %}id="{{ submit_id }}" {% endif %}value="{% if submit %}{{ submit }}{% else %}Submit{% endif %}" class="pure-button pure-button-primary" />
+      </p>
+    </div>
+  </fieldset>
+  {% for hidden in form.hidden_fields %}
+      {{ hidden }}
+  {% endfor %}
+  {% if next %}
+      <input type="hidden" name="next" value="{{ next }}" />
+  {% endif %}
+</form>
