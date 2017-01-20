@@ -140,6 +140,9 @@ a:visited {
     background: rgb(255, 255, 184);
 }
 
+.col-label {font-weight: bold; padding: 20px 10px 10px;}
+.col-value {padding: 20px 10px 10px;}
+
 /* For the https://github.com/devbridge/jQuery-Autocomplete plugin. */
 .autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
 .autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
@@ -278,4 +281,3 @@ html {
     -o-transition: none;
     transition: none;
 }
-
