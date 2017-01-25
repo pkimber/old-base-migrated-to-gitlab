@@ -134,6 +134,10 @@ a:visited {
     font-size: 85%;
 }
 
+.pure-button:visited {
+  color: #fff;
+}
+
 .testing {
     text-align: center;
     padding: 0;
