@@ -10,11 +10,21 @@ class BaseMixin(object):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        try:
+            site_name = settings.SITE_NAME
+        except:
+            site_name = 'base'
+        try:
+            company_name = settings.COMPANY_NAME
+        except:
+            company_name = 'KB Software'
         context.update(dict(
             path=get_path(self.request.path),
             request_path=self.request.path,
             testing=settings.TESTING,
             today=timezone.now(),
+            site_name=site_name,
+            company_name=company_name,
         ))
         return context
 
