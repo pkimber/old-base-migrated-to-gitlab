@@ -16,18 +16,21 @@
       <legend>{{ legend }}</legend>
     {% endif %}
     {% for field in form.visible_fields %}
-      {% include 'event/_form_field.html' with field=field %}
+      {% include 'base/_form_field.html' with field=field %}
     {% endfor %}
     {% if formset %}
       {{ formset.management_form }}
     {% endif %}
     {% for formset_form in formset %}
-    <legend>{{ formset_legend }} {% if formset_add %}{{ forloop.counter|add:formset_add }}{% else %}{{ forloop.counter|add:formset_add }}{% endif %}:</legend>
-        {% for field in formset_form.visible_fields %}
-        {% include 'event/_form_field.html' with field=field %}
-        {% endfor %}
+      <legend>
+        {{ formset_legend }}
+        {% if formset_add %}{{ forloop.counter|add:formset_add }}{% else %}{{ forloop.counter }}{% endif %}:
+      </legend>
+      {% for field in formset_form.visible_fields %}
+        {% include 'base/_form_field.html' with field=field %}
+      {% endfor %}
       {% for hidden in formset_form.hidden_fields %}
-      {{ hidden }}
+        {{ hidden }}
       {% endfor %}
     {% endfor %}
     <div class="pure-controls">
@@ -37,9 +40,9 @@
     </div>
   </fieldset>
   {% for hidden in form.hidden_fields %}
-      {{ hidden }}
+    {{ hidden }}
   {% endfor %}
   {% if next %}
-      <input type="hidden" name="next" value="{{ next }}" />
+    <input type="hidden" name="next" value="{{ next }}" />
   {% endif %}
 </form>
