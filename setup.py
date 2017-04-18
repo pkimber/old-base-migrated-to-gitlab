@@ -113,7 +113,7 @@ setup(
             'templates/base/*.*',
         ],
     },
-    version='0.2.09',
+    version='0.2.10',
     description='Base',
     author='Malcolm Dinsmore',
     author_email='code-md@kbsoftware.co.uk',
