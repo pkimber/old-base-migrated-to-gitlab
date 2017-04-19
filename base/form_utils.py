@@ -71,7 +71,9 @@ class FileDropInput(FileInput):
         filedrop_class = ''
         if value is None:
             value = ''
-        final_attrs = self.build_attrs(attrs, type=self.input_type, name=name)
+        extra_attrs = attrs.copy() if attrs else {}
+        extra_attrs.update(name=name, type=self.input_type)
+        final_attrs = self.build_attrs(self.attrs, extra_attrs)
         if final_attrs:
             fd_class = final_attrs.get('class', None)
             if fd_class:
