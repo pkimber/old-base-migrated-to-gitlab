@@ -1,5 +1,9 @@
 {% load staticfiles %}
 <script src="{% static 'vendor/js/ckeditor/ckeditor.js' %}" type="text/javascript"></script>
 <script type="text/javascript">
-  CKEDITOR.replace('{% if id_textarea %}{{ id_textarea }}{% else %}id_description{% endif %}');
+  {# make the allowedContent the same as base.form_utils.bleach_clean - except no iframe and img #}
+  CKEDITOR.replace(
+    '{% if id_textarea %}{{ id_textarea }}{% else %}id_description{% endif %}',
+    {allowedContent: 'a abbr acronym b blockquote br code em i li ol strong table tbody td thead tr u ul'}
+  );
 </script>

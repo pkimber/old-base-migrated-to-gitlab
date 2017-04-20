@@ -46,6 +46,11 @@ def bleach_clean(data):
         'iframe',
         'img',
         'p',
+        'table',
+        'tbody',
+        'td',
+        'thead',
+        'tr',
         'u',
     ]
     return clean(data, tags=tags, attributes=attributes, styles=styles)
